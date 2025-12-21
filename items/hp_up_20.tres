@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="StatChangeItem" load_steps=2 format=3 uid="uid://dnnq666v4pcre"]
+
+[ext_resource type="Script" uid="uid://c73nunhie3eax" path="res://items/base classes/stat_change_item.gd" id="1_i0fo0"]
+
+[resource]
+script = ExtResource("1_i0fo0")
+health_change = 20
+item_name = &"Moderate health up"
+description = "Increases health by 20"
+price = 20
+metadata/_custom_type_script = "uid://c73nunhie3eax"
