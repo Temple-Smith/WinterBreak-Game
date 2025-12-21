@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="StatChangeItem" load_steps=2 format=3 uid="uid://bu450urh4aubu"]
+
+[ext_resource type="Script" uid="uid://c73nunhie3eax" path="res://items/base classes/stat_change_item.gd" id="1_0dfqw"]
+
+[resource]
+script = ExtResource("1_0dfqw")
+attack_change = 10
+item_name = &"Small attack up"
+description = "Increases attack by 10"
+price = 10
+metadata/_custom_type_script = "uid://c73nunhie3eax"

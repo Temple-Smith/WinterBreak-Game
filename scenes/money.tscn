@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bksj4fdxrvrbc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfmaa"]
+
+[node name="Money" type="Area2D" groups=["money"]]
+metadata/amount = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nfmaa")

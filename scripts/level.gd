@@ -1,11 +1,10 @@
 extends Node2D
 
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	#set the canvas_layer as a global so that any other node can easily reference it
+	Autoload.canvas_layer = canvas_layer
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
