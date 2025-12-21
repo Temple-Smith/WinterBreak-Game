@@ -34,22 +34,25 @@ layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_6hffh")
 text = "Item 1"
+metadata/item_index = 0
 
 [node name="Item2" type="Button" parent="MainVBox/Items"]
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_6hffh")
 text = "Item 2"
+metadata/item_index = 1
 
 [node name="Item3" type="Button" parent="MainVBox/Items"]
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_6hffh")
 text = "Item 3"
+metadata/item_index = 2
 
 [node name="ItemDescription" type="Label" parent="MainVBox"]
 layout_mode = 2
-text = "Item description"
+text = "Select an item to buy!"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MainVBox"]
@@ -63,3 +66,6 @@ text = "Buy"
 [node name="CancelButton" type="Button" parent="MainVBox/HBoxContainer"]
 layout_mode = 2
 text = "Cancel"
+
+[connection signal="pressed" from="MainVBox/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="MainVBox/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

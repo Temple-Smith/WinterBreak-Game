@@ -1,9 +1,10 @@
 extends Node
 
 var canvas_layer: CanvasLayer = null
+var player_money: int = 0
 
-func _ready() -> void:
-	pass # Replace with function body.
+func get_player_money() -> int:
+	return player_money
 
-func _process(delta: float) -> void:
-	pass
+func set_player_money(new_value: int) -> void:
+	player_money = new_value

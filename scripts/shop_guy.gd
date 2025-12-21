@@ -3,18 +3,27 @@ extends Area2D
 const SHOP_UI_RES = preload("uid://bv4tyih8540kx")
 
 var shop_ui: Control = null
+var player: CharacterBody2D = null
 
-@export var item_1: String = "placeholder item 1"
-@export var item_2: String = "placeholder item 2"
-@export var item_3: String = "placeholder item 3"
+@export var items: Array[BaseItem] = [ null, null, null ]
 
-#this shop guy should only instantiate the ui under the global canvas_layer
-#the shop ui itself can handle the rest of the shop
-func interact(caller: Node2D) -> void:
-	if caller.has_method("set_disable_input"): caller.set_disable_input(true)
-	assert(shop_ui == null, "Attempting to open shop ui when its already open (player control should be disabled)")
+func _ready() -> void:
+	assert(items.size() == 3, "A shop guy needs to have exactly 3 items")
+
+## This shop guy should only instantiate the ui under the global canvas_layer. The shop ui itself can handle the rest of the shop
+func interact(calling_node: CharacterBody2D) -> void:
+	player = calling_node
+	assert(player.has_method("set_disable_input"), "Calling_node needs to have a set_disable_input method")
 	assert(Autoload.canvas_layer != null, "Autoload.canvas_layer was null")
+	assert(shop_ui == null, "Attempting to open shop ui when its already open (player control should be disabled)")
+
+	player.set_disable_input(true)
 	shop_ui = SHOP_UI_RES.instantiate()
-	shop_ui.player = caller
-	shop_ui.items = [ item_1, item_2, item_3 ]
+	shop_ui.player = player
+	shop_ui.shop_guy = self
 	Autoload.canvas_layer.add_child(shop_ui)
+	
+func close_shop() -> void:
+	shop_ui.queue_free()
+	shop_ui = null
+	player.set_disable_input(false)
