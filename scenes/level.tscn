@@ -12,3 +12,5 @@ position = Vector2(598, 315)
 
 [node name="ShopGuy" parent="." instance=ExtResource("3_w8frs")]
 position = Vector2(729, 262)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
