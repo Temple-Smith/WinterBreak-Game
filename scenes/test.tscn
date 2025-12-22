@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://bmmik1n2jet1i"]
 
 [ext_resource type="Script" uid="uid://bua2fgt735crh" path="res://scripts/level.gd" id="1_2q6dc"]
-[ext_resource type="PackedScene" uid="uid://qhltgybk1u3s" path="res://scenes/player.tscn" id="2_w7c3h"]
-[ext_resource type="PackedScene" uid="uid://dnree7wd72gil" path="res://scenes/shop-guy.tscn" id="3_w8frs"]
+[ext_resource type="PackedScene" uid="uid://qhltgybk1u3s" path="res://characters/player.tscn" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://dnree7wd72gil" path="res://characters/shop-guy.tscn" id="3_w8frs"]
 [ext_resource type="Resource" uid="uid://bu450urh4aubu" path="res://items/atk_up_10.tres" id="4_2r41h"]
 [ext_resource type="Script" uid="uid://bcsnotu0u7e42" path="res://items/base classes/base_item.gd" id="4_8c41q"]
 [ext_resource type="Resource" uid="uid://2shf5acfuaq7" path="res://items/hp_up_10.tres" id="5_klq6b"]
 [ext_resource type="Resource" uid="uid://dnnq666v4pcre" path="res://items/hp_up_20.tres" id="6_b121j"]
-[ext_resource type="PackedScene" uid="uid://bom0awiikr6x3" path="res://scenes/status-ui.tscn" id="7_b121j"]
-[ext_resource type="PackedScene" uid="uid://bksj4fdxrvrbc" path="res://scenes/money.tscn" id="7_klq6b"]
+[ext_resource type="PackedScene" uid="uid://bom0awiikr6x3" path="res://ui/status-ui.tscn" id="7_b121j"]
+[ext_resource type="PackedScene" uid="uid://bksj4fdxrvrbc" path="res://scenes/levels/props/money.tscn" id="7_klq6b"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_2q6dc")

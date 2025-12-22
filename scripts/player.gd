@@ -34,4 +34,3 @@ func _on_interaction_area_area_entered(area: Area2D) -> void:
 		var amount: int = area.get_meta("amount")
 		Autoload.player_money += amount
 		area.queue_free()
-		
