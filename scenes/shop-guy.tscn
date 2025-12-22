@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnree7wd72gil"]
+[gd_scene load_steps=3 format=3 uid="uid://dnree7wd72gil"]
+
+[ext_resource type="Script" uid="uid://s3b63ska4x24" path="res://scripts/shop_guy.gd" id="1_pjm62"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_em8i3"]
 
 [node name="ShopGuy" type="Area2D"]
+script = ExtResource("1_pjm62")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1.75, 1.75)
+scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_em8i3")
