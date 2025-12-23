@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://hqfvn2ay2mbq"]
+
+[ext_resource type="Texture2D" uid="uid://ibfn0ymj31sf" path="res://items/Tools Asset 16x16/00.png" id="1_pql4s"]
+
+[node name="Pickaxe" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pql4s")

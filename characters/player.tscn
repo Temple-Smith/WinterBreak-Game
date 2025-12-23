@@ -11,18 +11,18 @@
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_3vyb7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_3vyb7")
 
 [node name="InteractionArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+[node name="InteractionCollision" type="CollisionShape2D" parent="InteractionArea"]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_3vyb7")
 
 [node name="ItemArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemArea"]
+[node name="ItemCollision" type="CollisionShape2D" parent="ItemArea"]
 position = Vector2(21.935, 0)
 shape = SubResource("RectangleShape2D_g2els")
 
