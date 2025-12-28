@@ -1,9 +1,68 @@
-[gd_scene load_steps=2 format=3 uid="uid://bksj4fdxrvrbc"]
+[gd_scene load_steps=10 format=3 uid="uid://bksj4fdxrvrbc"]
+
+[ext_resource type="Texture2D" uid="uid://h8ivpc5341kq" path="res://art/money-Sheet.png" id="1_v42d4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfmaa"]
+size = Vector2(10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dia0j"]
+atlas = ExtResource("1_v42d4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xgx0"]
+atlas = ExtResource("1_v42d4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6q70k"]
+atlas = ExtResource("1_v42d4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdbfl"]
+atlas = ExtResource("1_v42d4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deygv"]
+atlas = ExtResource("1_v42d4")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iak8e"]
+atlas = ExtResource("1_v42d4")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qwpq8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dia0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xgx0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6q70k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdbfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_deygv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iak8e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="Money" type="Area2D" groups=["money"]]
 metadata/amount = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nfmaa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qwpq8")
+autoplay = "default"
+frame = 3
+frame_progress = 0.8637301
