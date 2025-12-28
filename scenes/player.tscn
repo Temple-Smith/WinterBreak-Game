@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://b256emvf1f6ad" path="res://art/miner-Sheet.png" id="2_g2els"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
+radius = 5.0
+height = 18.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
 
