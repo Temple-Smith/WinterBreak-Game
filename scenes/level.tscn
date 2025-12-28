@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmmik1n2jet1i"]
+[gd_scene load_steps=13 format=4 uid="uid://bmmik1n2jet1i"]
 
 [ext_resource type="Script" uid="uid://bua2fgt735crh" path="res://scripts/level.gd" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://qhltgybk1u3s" path="res://scenes/player.tscn" id="2_w7c3h"]
@@ -9,6 +9,20 @@
 [ext_resource type="Resource" uid="uid://dnnq666v4pcre" path="res://items/hp_up_20.tres" id="6_b121j"]
 [ext_resource type="PackedScene" uid="uid://bom0awiikr6x3" path="res://scenes/status-ui.tscn" id="7_b121j"]
 [ext_resource type="PackedScene" uid="uid://bksj4fdxrvrbc" path="res://scenes/money.tscn" id="7_klq6b"]
+[ext_resource type="Texture2D" uid="uid://bguihvkiukfu4" path="res://art/tileset/test_TileMap.png" id="10_olg7q"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t1rx8"]
+texture = ExtResource("10_olg7q")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_8iemx"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/2 = SubResource("TileSetAtlasSource_t1rx8")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_2q6dc")
@@ -38,3 +52,9 @@ metadata/amount = 10
 
 [node name="ShopGuy2" parent="." instance=ExtResource("3_w8frs")]
 position = Vector2(694, 337)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+z_index = -1
+position = Vector2(9, 10)
+tile_map_data = PackedByteArray("AAAPAAYAAgACAAAAAAAQAAYAAgACAAAAAAARAAYAAgACAAAAAAASAAYAAgACAAAAAAATAAYAAgACAAAAAAAUAAYAAgACAAAAAAAVAAYAAgACAAAAAAAWAAYAAgACAAAAAAAXAAYAAgACAAAAAAAYAAYAAgACAAAAAAAOAAYAAgACAAAAAAANAAYAAgACAAAAAAAMAAYAAgACAAAAAAAMAAcAAgACAAAAAAAMAAgAAgACAAAAAAAMAAkAAgACAAAAAAAMAAoAAgACAAAAAAAMAAsAAgACAAAAAAAMAAwAAgACAAAAAAANAAwAAgACAAAAAAAOAAwAAgACAAAAAAAPAAwAAgACAAAAAAAQAAwAAgACAAAAAAARAAwAAgACAAAAAAASAAwAAgACAAAAAAATAAwAAgACAAAAAAAUAAwAAgACAAAAAAAVAAwAAgACAAAAAAAWAAwAAgACAAAAAAAXAAwAAgACAAAAAAAYAAwAAgACAAAAAAAYAAcAAgACAAAAAAAYAAgAAgACAAAAAAAYAAkAAgACAAAAAAAYAAoAAgACAAAAAAAYAAsAAgACAAAAAAANAAcAAgABAAAAAAANAAgAAgAAAAAAAAANAAkAAgABAAAAAAANAAoAAgABAAAAAAANAAsAAgABAAAAAAAOAAsAAgABAAAAAAAOAAoAAgABAAAAAAAOAAkAAgABAAAAAAAOAAgAAgABAAAAAAAOAAcAAgABAAAAAAAPAAcAAgABAAAAAAAQAAcAAgAAAAAAAAARAAcAAgABAAAAAAASAAcAAgABAAAAAAATAAcAAgABAAAAAAAUAAcAAgABAAAAAAAVAAcAAgABAAAAAAAWAAcAAgABAAAAAAAXAAcAAgAAAAAAAAAXAAgAAgABAAAAAAAWAAgAAgABAAAAAAAVAAgAAgABAAAAAAAUAAgAAgABAAAAAAATAAgAAgABAAAAAAASAAgAAgABAAAAAAARAAgAAgABAAAAAAAQAAgAAgABAAAAAAAPAAgAAgABAAAAAAAPAAkAAgABAAAAAAAQAAkAAgABAAAAAAARAAkAAgABAAAAAAASAAkAAgABAAAAAAATAAkAAgABAAAAAAAUAAkAAgABAAAAAAAVAAkAAgAAAAAAAAAWAAkAAgABAAAAAAAXAAkAAgABAAAAAAAXAAoAAgABAAAAAAAWAAoAAgABAAAAAAAVAAoAAgABAAAAAAAUAAoAAgABAAAAAAATAAoAAgABAAAAAAASAAoAAgABAAAAAAARAAoAAgABAAAAAAAQAAoAAgABAAAAAAAPAAoAAgAAAAAAAAAPAAsAAgABAAAAAAAQAAsAAgABAAAAAAARAAsAAgABAAAAAAASAAsAAgABAAAAAAATAAsAAgAAAAAAAAAUAAsAAgABAAAAAAAVAAsAAgABAAAAAAAWAAsAAgABAAAAAAAXAAsAAgABAAAAAAA=")
+tile_set = SubResource("TileSet_8iemx")
