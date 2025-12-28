@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-
+const SPEED = 100.0
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var interaction_area: Area2D = $InteractionArea
 
 var _disable_input: bool = false
@@ -14,10 +14,25 @@ func _process(delta: float) -> void:
 
 func _handle_movement() -> void:
 	var direction: Vector2 = Input.get_vector("left", "right", "up", "down")
-	if direction:
+	if direction.x < 0:
 		velocity = direction * SPEED
+		sprite.play("walk_Left")
+	elif direction.x > 0:
+		velocity = direction * SPEED
+		sprite.play("walk_Right")
+	elif direction.y > 0:
+		velocity = direction * SPEED
+		sprite.play("walk_Right")
+	elif direction.y < 0:
+		velocity = direction * SPEED
+		sprite.play("walk_Left")
 	else:
-		velocity = Vector2(move_toward(velocity.x, 0, SPEED), move_toward(velocity.y, 0, SPEED))
+		velocity = Vector2(
+			move_toward(velocity.x, 0, SPEED), 
+			move_toward(velocity.y, 0, SPEED)
+		)
+		sprite.stop()
+		sprite.frame = 0
 	move_and_slide()
 
 func _handle_input() -> void:
