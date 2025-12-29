@@ -8,6 +8,7 @@ const SPEED = 100.0
 
 var fire_timer: float = 0.0
 var is_firing: bool = false
+var fire_cooldown: float = 0.0
 var is_attacking := false
 var facing := "Right"
 var _disable_input: bool = false
@@ -16,10 +17,20 @@ func _physics_process(delta: float) -> void:
 	if not _disable_input: _handle_movement()
 
 func _process(delta: float) -> void:
-	#Update fire timer
-	if fire_timer > 0:
+	#fire cool-down for sweaty chud nerds
+	if fire_cooldown > 0.0:
+		fire_cooldown -= delta
+	
+	if fire_timer > 0.0:
 		fire_timer -= delta
 	
+	if not _disable_input:
+		handle_attack_input()
+	
+func handle_attack_input() -> void:
+	#if Input.is_action_just_pressed("attack") and fire_cooldown <= 0.0:
+		#attack()
+		#fire_cooldown = fire_rate
 	#Check if mouse button is held
 	is_firing = Input.is_action_pressed("attack")
 	
@@ -61,9 +72,6 @@ func _handle_movement() -> void:
 	move_and_slide()
 
 func _handle_input() -> void:
-	if Input.is_action_just_pressed("attack"):
-		attack()
-	
 	if Input.is_action_just_pressed("interact"):
 		var areas: Array[Area2D] = interaction_area.get_overlapping_areas()
 		if areas.size() > 0 and areas[0].has_method("interact"):
@@ -91,33 +99,6 @@ func attack() -> void:
 	projectile.setup(direction)
 	
 	get_parent().add_child(projectile)
-	
-	
-	
-	#const ATTACK_DISTANCE: float = 18.0  # in pixels
-	#is_attacking = true
-	#velocity = Vector2.ZERO
-	#
-	#slash_sprite.visible = true
-	#slash_sprite.play("attack_" + facing)
-	#
-	##flip hitbox depending on faced direction
-	#if facing == "Right":
-		#$AttackHitBox.position.x = ATTACK_DISTANCE
-		#slash_sprite.position.x = ATTACK_DISTANCE
-		#slash_sprite.scale.x = 1
-	#else:
-		#$AttackHitBox.position.x = -ATTACK_DISTANCE
-		#slash_sprite.position.x = -ATTACK_DISTANCE
-		#slash_sprite.scale.x = 1
-		#
-		#
-	#$AttackHitBox.monitoring = true 
-
-#func _on_slash_sprite_animation_finished() -> void:
-	#slash_sprite.visible = false
-	#$AttackHitBox.monitoring = false
-	#is_attacking = false
 	
 func _on_attack_hit_box_area_entered(area: Area2D) -> void:
 	var enemy := area.get_parent()

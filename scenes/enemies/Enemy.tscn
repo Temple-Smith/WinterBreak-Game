@@ -127,3 +127,18 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CapsuleShape2D_55jtl")
+
+[node name="HPBar" type="Node2D" parent="."]
+
+[node name="Background" type="ColorRect" parent="HPBar"]
+offset_left = -16.0
+offset_top = -17.0
+offset_right = 16.0
+offset_bottom = -13.0
+
+[node name="Fill" type="ColorRect" parent="HPBar"]
+offset_left = -16.0
+offset_top = -17.0
+offset_right = 16.0
+offset_bottom = -13.0
+color = Color(0.7102787, 0.13985544, 0.26900554, 1)
