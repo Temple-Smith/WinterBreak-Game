@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h8ivpc5341kq"
-path="res://.godot/imported/money-Sheet.png-efd18a71584884f87183493fdce14d94.ctex"
+uid="uid://cattytnbd7sl3"
+path="res://.godot/imported/basicAttack-Sheet.png-1ec63238ddd6da23ba2271a1d1d7706e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/money-Sheet.png"
-dest_files=["res://.godot/imported/money-Sheet.png-efd18a71584884f87183493fdce14d94.ctex"]
+source_file="res://art/animations/basicAttack-Sheet.png"
+dest_files=["res://.godot/imported/basicAttack-Sheet.png-1ec63238ddd6da23ba2271a1d1d7706e.ctex"]
 
 [params]
 
