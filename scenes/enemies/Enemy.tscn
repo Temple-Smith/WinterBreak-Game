@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dde8tqn77wkoq"]
+[gd_scene load_steps=16 format=3 uid="uid://dde8tqn77wkoq"]
 
 [ext_resource type="Script" uid="uid://chc5xb8ior121" path="res://scripts/enemy.gd" id="1_0o2lx"]
 [ext_resource type="Texture2D" uid="uid://cho3bh7dvfwud" path="res://art/enemies/mole-Sheet.png" id="2_55jtl"]
@@ -15,37 +15,33 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("2_55jtl")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5wwv6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7o7a"]
 atlas = ExtResource("2_55jtl")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1vja8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8axbs"]
 atlas = ExtResource("2_55jtl")
-region = Rect2(96, 0, 32, 32)
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iwav8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_73enu"]
 atlas = ExtResource("2_55jtl")
-region = Rect2(256, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1i2q2"]
-atlas = ExtResource("2_55jtl")
-region = Rect2(288, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ly5gv"]
-atlas = ExtResource("2_55jtl")
-region = Rect2(128, 0, 32, 32)
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_82o86"]
 atlas = ExtResource("2_55jtl")
 region = Rect2(160, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1gqeq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7iym1"]
 atlas = ExtResource("2_55jtl")
 region = Rect2(192, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_isvm2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cewq"]
 atlas = ExtResource("2_55jtl")
-region = Rect2(224, 0, 32, 32)
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtlqb"]
+atlas = ExtResource("2_55jtl")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3gvst"]
 animations = [{
@@ -55,6 +51,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ft8do")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7o7a")
 }],
 "loop": true,
 "name": &"idle_Left",
@@ -62,10 +61,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5wwv6")
+"texture": SubResource("AtlasTexture_8axbs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1vja8")
+"texture": SubResource("AtlasTexture_73enu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7o7a")
 }],
 "loop": true,
 "name": &"idle_Right",
@@ -73,21 +75,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iwav8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1i2q2")
-}],
-"loop": true,
-"name": &"idle_Up",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ly5gv")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_82o86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7iym1")
 }],
 "loop": true,
 "name": &"walk_Left",
@@ -95,10 +86,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1gqeq")
+"texture": SubResource("AtlasTexture_7cewq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_isvm2")
+"texture": SubResource("AtlasTexture_vtlqb")
 }],
 "loop": true,
 "name": &"walk_Right",
@@ -110,7 +101,7 @@ radius = 9.0
 height = 22.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k7o7a"]
-radius = 34.234486
+radius = 140.0
 
 [node name="Mole" type="CharacterBody2D"]
 script = ExtResource("1_0o2lx")
@@ -120,9 +111,10 @@ shape = SubResource("CapsuleShape2D_t8fr5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3gvst")
-animation = &"idle_Left"
+animation = &"walk_Right"
 autoplay = "idle_Left"
-frame_progress = 0.048439402
+frame = 1
+frame_progress = 0.95147866
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 4
