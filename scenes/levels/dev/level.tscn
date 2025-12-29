@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bmmik1n2jet1i"]
+[gd_scene load_steps=13 format=4 uid="uid://bmmik1n2jet1i"]
 
 [ext_resource type="Script" uid="uid://bua2fgt735crh" path="res://scripts/level.gd" id="1_2elk7"]
 [ext_resource type="PackedScene" uid="uid://qhltgybk1u3s" path="res://scenes/player/player.tscn" id="2_v1dcv"]
@@ -9,21 +9,9 @@
 [ext_resource type="Resource" uid="uid://dnnq666v4pcre" path="res://items/hp_up_20.tres" id="7_ysn8j"]
 [ext_resource type="PackedScene" uid="uid://bom0awiikr6x3" path="res://scenes/status-ui.tscn" id="8_qguvd"]
 [ext_resource type="PackedScene" uid="uid://bksj4fdxrvrbc" path="res://scenes/levels/props/money.tscn" id="9_3g6sb"]
-[ext_resource type="Texture2D" uid="uid://bguihvkiukfu4" path="res://art/tileset/test_TileMap.png" id="10_1tco0"]
+[ext_resource type="TileSet" uid="uid://tfp54jr2rmh3" path="res://art/tileset/ground.tres" id="10_v1dcv"]
 [ext_resource type="PackedScene" uid="uid://dde8tqn77wkoq" path="res://scenes/enemies/Enemy.tscn" id="11_wyw0r"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t1rx8"]
-texture = ExtResource("10_1tco0")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-
-[sub_resource type="TileSet" id="TileSet_8iemx"]
-tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
-sources/2 = SubResource("TileSetAtlasSource_t1rx8")
+[ext_resource type="PackedScene" uid="uid://ddde6ngyk7ojs" path="res://scenes/levels/props/ore.tscn" id="13_g28c4"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_2elk7")
@@ -58,7 +46,24 @@ position = Vector2(694, 337)
 z_index = -1
 position = Vector2(8, 10)
 tile_map_data = PackedByteArray("AAAPAAYAAgACAAAAAAAQAAYAAgACAAAAAAARAAYAAgACAAAAAAASAAYAAgACAAAAAAATAAYAAgACAAAAAAAUAAYAAgACAAAAAAAVAAYAAgACAAAAAAAWAAYAAgACAAAAAAAXAAYAAgACAAAAAAAYAAYAAgACAAAAAAAOAAYAAgACAAAAAAANAAYAAgACAAAAAAAMAAYAAgACAAAAAAAMAAcAAgACAAAAAAAMAAgAAgACAAAAAAAMAAkAAgACAAAAAAAMAAoAAgACAAAAAAAMAAsAAgACAAAAAAAMAAwAAgACAAAAAAANAAwAAgACAAAAAAAOAAwAAgACAAAAAAAPAAwAAgACAAAAAAAQAAwAAgACAAAAAAARAAwAAgACAAAAAAASAAwAAgACAAAAAAATAAwAAgACAAAAAAAUAAwAAgACAAAAAAAVAAwAAgACAAAAAAAWAAwAAgACAAAAAAAXAAwAAgACAAAAAAAYAAwAAgACAAAAAAAYAAcAAgACAAAAAAAYAAgAAgACAAAAAAAYAAkAAgACAAAAAAAYAAoAAgACAAAAAAAYAAsAAgACAAAAAAANAAcAAgABAAAAAAANAAgAAgAAAAAAAAANAAkAAgABAAAAAAANAAoAAgABAAAAAAANAAsAAgABAAAAAAAOAAsAAgABAAAAAAAOAAoAAgABAAAAAAAOAAkAAgABAAAAAAAOAAgAAgABAAAAAAAOAAcAAgABAAAAAAAPAAcAAgABAAAAAAAQAAcAAgAAAAAAAAARAAcAAgABAAAAAAASAAcAAgABAAAAAAATAAcAAgABAAAAAAAUAAcAAgABAAAAAAAVAAcAAgABAAAAAAAWAAcAAgABAAAAAAAXAAcAAgAAAAAAAAAXAAgAAgABAAAAAAAWAAgAAgABAAAAAAAVAAgAAgABAAAAAAAUAAgAAgABAAAAAAATAAgAAgABAAAAAAASAAgAAgABAAAAAAARAAgAAgABAAAAAAAQAAgAAgABAAAAAAAPAAgAAgABAAAAAAAPAAkAAgABAAAAAAAQAAkAAgABAAAAAAARAAkAAgABAAAAAAASAAkAAgABAAAAAAATAAkAAgABAAAAAAAUAAkAAgABAAAAAAAVAAkAAgAAAAAAAAAWAAkAAgABAAAAAAAXAAkAAgABAAAAAAAXAAoAAgABAAAAAAAWAAoAAgABAAAAAAAVAAoAAgABAAAAAAAUAAoAAgABAAAAAAATAAoAAgABAAAAAAASAAoAAgABAAAAAAARAAoAAgABAAAAAAAQAAoAAgABAAAAAAAPAAoAAgAAAAAAAAAPAAsAAgABAAAAAAAQAAsAAgABAAAAAAARAAsAAgABAAAAAAASAAsAAgABAAAAAAATAAsAAgAAAAAAAAAUAAsAAgABAAAAAAAVAAsAAgABAAAAAAAWAAsAAgABAAAAAAAXAAsAAgABAAAAAAA=")
-tile_set = SubResource("TileSet_8iemx")
+tile_set = ExtResource("10_v1dcv")
 
 [node name="Mole" parent="." instance=ExtResource("11_wyw0r")]
 position = Vector2(530, 345)
+
+[node name="OreNodes" type="Node2D" parent="."]
+
+[node name="Ore" parent="OreNodes" instance=ExtResource("13_g28c4")]
+position = Vector2(441, 247)
+
+[node name="Ore2" parent="OreNodes" instance=ExtResource("13_g28c4")]
+position = Vector2(441, 263)
+
+[node name="Ore3" parent="OreNodes" instance=ExtResource("13_g28c4")]
+position = Vector2(441, 279)
+
+[node name="Ore4" parent="OreNodes" instance=ExtResource("13_g28c4")]
+position = Vector2(441, 295)
+
+[node name="Ore5" parent="OreNodes" instance=ExtResource("13_g28c4")]
+position = Vector2(441, 311)

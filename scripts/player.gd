@@ -91,6 +91,21 @@ func _on_slash_sprite_animation_finished() -> void:
 	is_attacking = false
 	
 func _on_attack_hit_box_area_entered(area: Area2D) -> void:
-	var enemy := area.get_parent()
-	if enemy is Enemy:
-		enemy.take_damage(1)	
+	var parent := area.get_parent()
+	
+	#Hit enemies
+	if parent is Enemy:
+		parent.take_damage(1)
+		return
+		
+	#Hit ore
+	if area.is_in_group("ore") and area.has_method("hit"):
+		print("Hit ore AREA:", area.name)
+		area.hit(1)
+	elif parent.is_in_group("ore") and parent.has_method("hit"):
+		print("Hit ore PARENT:", parent.name)
+		parent.hit(1)
+	else:
+		#debug
+		print("AttackHitBox hit something else:", area.name, "parent:", parent.name)
+		
