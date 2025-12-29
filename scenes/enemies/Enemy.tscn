@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dde8tqn77wkoq"]
+[gd_scene load_steps=17 format=3 uid="uid://dde8tqn77wkoq"]
 
 [ext_resource type="Script" uid="uid://chc5xb8ior121" path="res://scripts/enemy.gd" id="1_0o2lx"]
 [ext_resource type="Texture2D" uid="uid://cho3bh7dvfwud" path="res://art/enemies/mole-Sheet.png" id="2_55jtl"]
@@ -109,6 +109,9 @@ animations = [{
 radius = 9.0
 height = 22.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_k7o7a"]
+radius = 34.234486
+
 [node name="Mole" type="CharacterBody2D"]
 script = ExtResource("1_0o2lx")
 
@@ -142,3 +145,13 @@ offset_top = -17.0
 offset_right = 16.0
 offset_bottom = -13.0
 color = Color(0.7102787, 0.13985544, 0.26900554, 1)
+
+[node name="AggroRange" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange"]
+shape = SubResource("CircleShape2D_k7o7a")
+
+[connection signal="body_entered" from="AggroRange" to="." method="_on_aggro_range_body_entered"]
+[connection signal="body_exited" from="AggroRange" to="." method="_on_aggro_range_body_exited"]

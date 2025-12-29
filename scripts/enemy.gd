@@ -1,5 +1,6 @@
 class_name Enemy extends CharacterBody2D
-
+enum State { IDLE, AGGRO }
+var state: State = State.IDLE
 @export var speed := 10.0
 @export var max_health := 30
 
@@ -15,22 +16,23 @@ var is_dead := false
 func _ready() -> void:
 	
 	current_hp = max_health
-	player = get_tree().get_first_node_in_group("player")
+	#player = get_tree().get_first_node_in_group("player")
 	sprite.play("idle_Left")
 	
 	full_hp_width = hp_fill.size.x
 	update_hp_bar()
 	
-func _process(delta: float) -> void:
-	if not player:
-		return
-	
-	var direction :=(player.global_position - global_position).normalized()
-	velocity = speed * direction
-	
-	move_and_slide()
-	
-	update_animation(direction)
+#func _process(delta: float) -> void:
+	#if not player:
+		#return
+	#
+	#var direction :=(player.global_position - global_position).normalized()
+	#velocity = speed * direction
+	#
+	#move_and_slide()
+	#
+	#update_animation(direction)
+	#pass
 	
 func update_animation(direction: Vector2) -> void:
 	if abs(direction.x) > abs(direction.y):
@@ -39,9 +41,25 @@ func update_animation(direction: Vector2) -> void:
 		else:
 			sprite.play("walk_Left")
 	else:
-		sprite.play("walk_Left")
+		sprite.play("idle_Left")
+		return
+		
  	
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
+	
+	match state:
+		State.IDLE:
+			velocity = Vector2.ZERO
+			sprite.play("idle_Right")
+		
+		State.AGGRO:
+			if player:
+				var direction: Vector2 = (player.global_position - global_position).normalized()
+				velocity = direction * speed
+				update_animation(direction)
+				
 	move_and_slide()
 	
 func take_damage(amount: int) -> void:
@@ -74,3 +92,14 @@ func flash_red() -> void:
 func die() -> void:
 	is_dead = true
 	queue_free()
+
+
+func _on_aggro_range_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		state = State.AGGRO
+		player = body
+
+func _on_aggro_range_body_exited(body: Node2D) -> void:
+	if body == player:
+		state = State.IDLE
+		player = null
