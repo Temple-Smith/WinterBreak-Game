@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cho3bh7dvfwud"
-path="res://.godot/imported/mole-Sheet.png-009cc4bd7de8d0c686e7daeae35e5c77.ctex"
+uid="uid://ce8nh400r1ed7"
+path="res://.godot/imported/numbers-Sheet.png-56e578f5c0f82906e007f53cbd07244c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Mole/mole-Sheet.png"
-dest_files=["res://.godot/imported/mole-Sheet.png-009cc4bd7de8d0c686e7daeae35e5c77.ctex"]
+source_file="res://art/numbers/numbers-Sheet.png"
+dest_files=["res://.godot/imported/numbers-Sheet.png-56e578f5c0f82906e007f53cbd07244c.ctex"]
 
 [params]
 

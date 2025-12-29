@@ -16,24 +16,23 @@ func _process(delta: float) -> void:
 	if not _disable_input: _handle_input()
 
 func _handle_movement() -> void:
+	
 	if is_attacking:
 		move_and_slide()
 		return
+	
 	var direction: Vector2 = Input.get_vector("left", "right", "up", "down")
 	var animation_name: String = ""
+	
 	if direction != Vector2.ZERO:        # Update facing ONLY for horizontal movement
 		if direction.x < 0:
 			facing = "Left"
 		elif direction.x > 0:
 			facing = "Right"
-
-
 		# Set animation based on horizontal facing
 		animation_name = "walk_" + facing
-
 		# Move player
 		velocity = direction * SPEED
-	
 	
 	else:
 		velocity = Vector2(
@@ -44,6 +43,7 @@ func _handle_movement() -> void:
 	
 	if sprite.animation != animation_name:
 		sprite.play(animation_name)
+	
 	move_and_slide()
 
 func _handle_input() -> void:
@@ -65,7 +65,7 @@ func _on_interaction_area_area_entered(area: Area2D) -> void:
 		area.queue_free()
 
 func attack() -> void:
-	const ATTACK_DISTANCE: float = 14.0  # in pixels
+	const ATTACK_DISTANCE: float = 18.0  # in pixels
 	is_attacking = true
 	velocity = Vector2.ZERO
 	
@@ -73,7 +73,6 @@ func attack() -> void:
 	slash_sprite.play("attack_" + facing)
 	
 	#flip hitbox depending on faced direction
-	var offset_x: float = abs($AttackHitBox.position.x)
 	if facing == "Right":
 		$AttackHitBox.position.x = ATTACK_DISTANCE
 		slash_sprite.position.x = ATTACK_DISTANCE
@@ -81,12 +80,17 @@ func attack() -> void:
 	else:
 		$AttackHitBox.position.x = -ATTACK_DISTANCE
 		slash_sprite.position.x = -ATTACK_DISTANCE
-	$AttackHitBox.position.x = abs($AttackHitBox.position.x) * (-1 if facing == "right" else 1)
-	
+		slash_sprite.scale.x = 1
+		
+		
 	$AttackHitBox.monitoring = true
 
 func _on_slash_sprite_animation_finished() -> void:
 	slash_sprite.visible = false
 	$AttackHitBox.monitoring = false
 	is_attacking = false
-		 # Replace with function body.
+	
+func _on_attack_hit_box_area_entered(area: Area2D) -> void:
+	var enemy := area.get_parent()
+	if enemy is Enemy:
+		enemy.take_damage(1)	

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://h8ivpc5341kq"
-path="res://.godot/imported/money-Sheet.png-efd18a71584884f87183493fdce14d94.ctex"
+path="res://.godot/imported/money-Sheet.png-9e9f5b03bbe2b3f9b407b4ab82159bab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/money-Sheet.png"
-dest_files=["res://.godot/imported/money-Sheet.png-efd18a71584884f87183493fdce14d94.ctex"]
+source_file="res://art/animations/money-Sheet.png"
+dest_files=["res://.godot/imported/money-Sheet.png-9e9f5b03bbe2b3f9b407b4ab82159bab.ctex"]
 
 [params]
 
