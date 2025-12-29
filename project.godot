@@ -75,8 +75,12 @@ attack={
 
 [layer_names]
 
-2d_physics/layer_2="PlayerAttack"
-2d_physics/layer_3="Enemies"
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemy HitBox"
+2d_physics/layer_4="Enemy Aggro Range"
+2d_physics/layer_5="Player Projectile"
+2d_physics/layer_6="Enemy Projectile"
 
 [rendering]
 

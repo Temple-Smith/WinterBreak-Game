@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED = 100.0
 @export var fire_rate: float = 0.25
 @export var projectile_scene: PackedScene = preload("res://scenes/player/projectile.tscn")
+@export var max_health: int = 10
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var interaction_area: Area2D = $InteractionArea
 
@@ -12,6 +13,24 @@ var fire_cooldown: float = 0.0
 var is_attacking := false
 var facing := "Right"
 var _disable_input: bool = false
+var current_health: int = max_health
+
+func take_damage(amount: int) -> void:
+	flash_red()
+	current_health -= amount
+	current_health = max(current_health, 0)
+	if current_health <= 0:
+		die()
+
+func flash_red() -> void:
+	sprite.modulate = Color(1,0.3,0.3)
+	await get_tree().create_timer(0.1).timeout
+	sprite.modulate = Color.WHITE
+
+func die() -> void:
+	_disable_input = true
+	queue_free()
+	
 
 func _physics_process(delta: float) -> void:
 	if not _disable_input: _handle_movement()
@@ -96,7 +115,7 @@ func attack() -> void:
 	var projectile: Projectile = projectile_scene.instantiate() as Projectile
 	projectile.position = spawn_pos
 	#projectile.velocity = direction * projectile.speed
-	projectile.setup(direction)
+	projectile.setup(direction, Projectile.Owner.PLAYER)
 	
 	get_parent().add_child(projectile)
 	

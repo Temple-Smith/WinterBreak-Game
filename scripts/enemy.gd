@@ -1,15 +1,22 @@
 class_name Enemy extends CharacterBody2D
+enum State { IDLE, AGGRO }
 
+@export var projectile_scene: PackedScene = preload("res://scenes/player/projectile.tscn")
+@export var fire_rate: float = 2.0
+@export var attack_range: float = 250.0
 @export var speed := 10.0
 @export var max_health := 30
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hp_fill: ColorRect = $HPBar/Fill
 
+var state: State = State.IDLE
 var current_hp: int = max_health
 var full_hp_width: float
-@onready var hp_fill: ColorRect = $HPBar/Fill
 var player: Node2D
 var is_dead := false
+var fire_cooldown: float = 0.0
+var fire_timer: float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,17 +28,6 @@ func _ready() -> void:
 	full_hp_width = hp_fill.size.x
 	update_hp_bar()
 	
-func _process(delta: float) -> void:
-	if not player:
-		return
-	
-	var direction :=(player.global_position - global_position).normalized()
-	velocity = speed * direction
-	
-	move_and_slide()
-	
-	update_animation(direction)
-	
 func update_animation(direction: Vector2) -> void:
 	if abs(direction.x) > abs(direction.y):
 		if direction.x > 0:
@@ -39,10 +35,50 @@ func update_animation(direction: Vector2) -> void:
 		else:
 			sprite.play("walk_Left")
 	else:
-		sprite.play("walk_Left")
- 	
+		sprite.play("idle_Left")
+		return
+		
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
+	
+	match state:
+		State.IDLE:
+			velocity = Vector2.ZERO
+			sprite.play("idle_Right")
+		
+		State.AGGRO:
+			if player:
+				var direction: Vector2 = (player.global_position - global_position).normalized()
+				velocity = direction * speed
+				fire_timer -= delta
+				if fire_timer <= 0.0:
+					fire_at_player(direction)
+					fire_timer = fire_rate
+				
+				update_animation(direction)
+				
 	move_and_slide()
+
+func fire_at_player(direction: Vector2) -> void:
+	if projectile_scene == null:
+		return
+	
+	var spread_angle: float = 0.3
+	var bullets := 3
+	
+	for i in bullets:
+		# Calculate angle offset for each bullet
+		var t: float = float(i) / float(bullets - 1)  # 0..1
+		var angle_offset: float = lerp(-spread_angle, spread_angle, t)
+		var bullet_dir: Vector2 = direction.rotated(angle_offset).normalized()
+		var projectile: Projectile = projectile_scene.instantiate()
+		projectile.position = global_position
+		projectile.lifetime = 2.0
+		projectile.speed = 80
+		projectile.setup(bullet_dir, Projectile.Owner.ENEMY)
+		get_parent().add_child(projectile)
+ 
 	
 func take_damage(amount: int) -> void:
 	if is_dead:
@@ -74,3 +110,16 @@ func flash_red() -> void:
 func die() -> void:
 	is_dead = true
 	queue_free()
+	
+	
+
+
+func _on_aggro_range_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		state = State.AGGRO
+		player = body
+
+func _on_aggro_range_body_exited(body: Node2D) -> void:
+	if body == player:
+		state = State.IDLE
+		player = null
