@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 100.0
+@export var projectile_scene: PackedScene = preload("res://scenes/player/projectile.tscn")
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var slash_sprite: AnimatedSprite2D = $SlashSprite
@@ -65,25 +66,37 @@ func _on_interaction_area_area_entered(area: Area2D) -> void:
 		area.queue_free()
 
 func attack() -> void:
-	const ATTACK_DISTANCE: float = 18.0  # in pixels
-	is_attacking = true
-	velocity = Vector2.ZERO
+	var mouse_pos: Vector2 = get_global_mouse_position()
+	var direction: Vector2 = (mouse_pos - global_position).normalized()
 	
-	slash_sprite.visible = true
-	slash_sprite.play("attack_" + facing)
+	var projectile: Projectile = projectile_scene.instantiate() as Projectile
+	projectile.position = global_position
+	#projectile.velocity = direction * projectile.speed
+	projectile.setup(direction)
 	
-	#flip hitbox depending on faced direction
-	if facing == "Right":
-		$AttackHitBox.position.x = ATTACK_DISTANCE
-		slash_sprite.position.x = ATTACK_DISTANCE
-		slash_sprite.scale.x = 1
-	else:
-		$AttackHitBox.position.x = -ATTACK_DISTANCE
-		slash_sprite.position.x = -ATTACK_DISTANCE
-		slash_sprite.scale.x = 1
-		
-		
-	$AttackHitBox.monitoring = true
+	get_parent().add_child(projectile)
+	
+	
+	
+	#const ATTACK_DISTANCE: float = 18.0  # in pixels
+	#is_attacking = true
+	#velocity = Vector2.ZERO
+	#
+	#slash_sprite.visible = true
+	#slash_sprite.play("attack_" + facing)
+	#
+	##flip hitbox depending on faced direction
+	#if facing == "Right":
+		#$AttackHitBox.position.x = ATTACK_DISTANCE
+		#slash_sprite.position.x = ATTACK_DISTANCE
+		#slash_sprite.scale.x = 1
+	#else:
+		#$AttackHitBox.position.x = -ATTACK_DISTANCE
+		#slash_sprite.position.x = -ATTACK_DISTANCE
+		#slash_sprite.scale.x = 1
+		#
+		#
+	#$AttackHitBox.monitoring = true 
 
 func _on_slash_sprite_animation_finished() -> void:
 	slash_sprite.visible = false
