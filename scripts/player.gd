@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
 const SPEED = 100.0
+@export var fire_rate: float = 0.25
 @export var projectile_scene: PackedScene = preload("res://scenes/player/projectile.tscn")
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var interaction_area: Area2D = $InteractionArea
-@onready var slash_sprite: AnimatedSprite2D = $SlashSprite
 
+var fire_timer: float = 0.0
+var is_firing: bool = false
 var is_attacking := false
 var facing := "Right"
 var _disable_input: bool = false
@@ -14,6 +16,17 @@ func _physics_process(delta: float) -> void:
 	if not _disable_input: _handle_movement()
 
 func _process(delta: float) -> void:
+	#Update fire timer
+	if fire_timer > 0:
+		fire_timer -= delta
+	
+	#Check if mouse button is held
+	is_firing = Input.is_action_pressed("attack")
+	
+	if is_firing and fire_timer <= 0:
+		attack()
+		fire_timer = fire_rate
+	
 	if not _disable_input: _handle_input()
 
 func _handle_movement() -> void:
@@ -69,8 +82,11 @@ func attack() -> void:
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var direction: Vector2 = (mouse_pos - global_position).normalized()
 	
+	const SPAWN_DISTANCE: float = 10.0
+	var spawn_pos: Vector2 = global_position + direction * SPAWN_DISTANCE
+	
 	var projectile: Projectile = projectile_scene.instantiate() as Projectile
-	projectile.position = global_position
+	projectile.position = spawn_pos
 	#projectile.velocity = direction * projectile.speed
 	projectile.setup(direction)
 	
@@ -98,10 +114,10 @@ func attack() -> void:
 		#
 	#$AttackHitBox.monitoring = true 
 
-func _on_slash_sprite_animation_finished() -> void:
-	slash_sprite.visible = false
-	$AttackHitBox.monitoring = false
-	is_attacking = false
+#func _on_slash_sprite_animation_finished() -> void:
+	#slash_sprite.visible = false
+	#$AttackHitBox.monitoring = false
+	#is_attacking = false
 	
 func _on_attack_hit_box_area_entered(area: Area2D) -> void:
 	var enemy := area.get_parent()
