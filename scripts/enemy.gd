@@ -1,19 +1,25 @@
 class_name Enemy extends CharacterBody2D
 
 @export var speed := 10.0
-@export var max_health := 10
+@export var max_health := 30
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-var hp: int
+var current_hp: int = max_health
+var full_hp_width: float
+@onready var hp_fill: ColorRect = $HPBar/Fill
 var player: Node2D
 var is_dead := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	hp = max_health
+	
+	current_hp = max_health
 	player = get_tree().get_first_node_in_group("player")
 	sprite.play("idle_Left")
+	
+	full_hp_width = hp_fill.size.x
+	update_hp_bar()
 	
 func _process(delta: float) -> void:
 	if not player:
@@ -42,9 +48,10 @@ func take_damage(amount: int) -> void:
 	if is_dead:
 		return
 	
-	hp -= amount
+	current_hp -= amount
+	current_hp = clamp(current_hp, 0, max_health)
+	update_hp_bar()
 	flash_red()
-	
 	
 	var dmg_scene: PackedScene = preload("res://Scenes/Effects/DamageNumber.tscn")
 	var dmg_instance: Node2D = dmg_scene.instantiate()
@@ -52,8 +59,12 @@ func take_damage(amount: int) -> void:
 	get_parent().add_child(dmg_instance)
 	dmg_instance.setup(amount)
 	
-	if hp <= 0:
+	if current_hp <= 0:
 		die()
+		
+func update_hp_bar() -> void:
+	var ratio: float = float(current_hp) / float(max_health)
+	hp_fill.size.x = full_hp_width * ratio
 		
 func flash_red() -> void:
 	sprite.modulate = Color(1,0.3,0.3)
