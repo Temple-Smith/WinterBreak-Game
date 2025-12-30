@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bmmik1n2jet1i"]
+[gd_scene load_steps=16 format=4 uid="uid://bmmik1n2jet1i"]
 
 [ext_resource type="Script" uid="uid://bua2fgt735crh" path="res://scripts/level.gd" id="1_mis7f"]
 [ext_resource type="PackedScene" uid="uid://qhltgybk1u3s" path="res://characters/player/player.tscn" id="2_eosvf"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://bksj4fdxrvrbc" path="res://levels/props/money.tscn" id="9_07qge"]
 [ext_resource type="Texture2D" uid="uid://bguihvkiukfu4" path="res://art/tileset/test_TileMap.png" id="10_toppu"]
 [ext_resource type="PackedScene" uid="uid://dde8tqn77wkoq" path="res://characters/enemies/Enemy.tscn" id="11_w1il0"]
+[ext_resource type="PackedScene" uid="uid://ddde6ngyk7ojs" path="res://levels/props/ore.tscn" id="12_eosvf"]
+[ext_resource type="PackedScene" uid="uid://bq6c4lo2m6hv7" path="res://characters/enemies/mole.tscn" id="13_cu7eo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t1rx8"]
 texture = ExtResource("10_toppu")
@@ -29,7 +31,7 @@ sources/2 = SubResource("TileSetAtlasSource_t1rx8")
 script = ExtResource("1_mis7f")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_eosvf")]
-position = Vector2(598, 315)
+position = Vector2(570, 307)
 
 [node name="ShopGuy" parent="." instance=ExtResource("3_cu7eo")]
 position = Vector2(729, 262)
@@ -61,4 +63,30 @@ tile_map_data = PackedByteArray("AAAPAAYAAgACAAAAAAAQAAYAAgACAAAAAAARAAYAAgACAAA
 tile_set = SubResource("TileSet_8iemx")
 
 [node name="Mole" parent="." groups=["enemy"] instance=ExtResource("11_w1il0")]
-position = Vector2(538, 331)
+position = Vector2(502, 356)
+collision_layer = 4
+collision_mask = 80
+
+[node name="Ore" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(534, 334)
+
+[node name="Ore2" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(654, 379)
+
+[node name="Ore3" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(584, 270)
+
+[node name="Ore4" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(609, 291)
+
+[node name="Ore5" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(491, 310)
+
+[node name="Ore6" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(699, 247)
+
+[node name="Mole2" parent="." instance=ExtResource("13_cu7eo")]
+position = Vector2(730, 377)
+
+[node name="Mole3" parent="." instance=ExtResource("13_cu7eo")]
+position = Vector2(636, 243)

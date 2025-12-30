@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://bq6c4lo2m6hv7"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_b4fei"]
+[ext_resource type="Script" uid="uid://chc5xb8ior121" path="res://characters/enemies/enemy.gd" id="1_b4fei"]
 [ext_resource type="Texture2D" uid="uid://cho3bh7dvfwud" path="res://art/enemies/mole-Sheet.png" id="2_umms7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t8fr5"]
 radius = 9.0
-height = 22.0
+height = 26.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mpr68"]
 atlas = ExtResource("2_umms7")
@@ -104,9 +104,12 @@ height = 22.0
 radius = 140.0
 
 [node name="Mole" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 80
 script = ExtResource("1_b4fei")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_t8fr5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -118,9 +121,10 @@ frame_progress = 0.95147866
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 66
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_55jtl")
 
 [node name="HPBar" type="Node2D" parent="."]
