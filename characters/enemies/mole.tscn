@@ -1,0 +1,149 @@
+[gd_scene load_steps=16 format=3 uid="uid://bq6c4lo2m6hv7"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_b4fei"]
+[ext_resource type="Texture2D" uid="uid://cho3bh7dvfwud" path="res://art/enemies/mole-Sheet.png" id="2_umms7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t8fr5"]
+radius = 9.0
+height = 22.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpr68"]
+atlas = ExtResource("2_umms7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft8do"]
+atlas = ExtResource("2_umms7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7o7a"]
+atlas = ExtResource("2_umms7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8axbs"]
+atlas = ExtResource("2_umms7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73enu"]
+atlas = ExtResource("2_umms7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82o86"]
+atlas = ExtResource("2_umms7")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7iym1"]
+atlas = ExtResource("2_umms7")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cewq"]
+atlas = ExtResource("2_umms7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtlqb"]
+atlas = ExtResource("2_umms7")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3gvst"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpr68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ft8do")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7o7a")
+}],
+"loop": true,
+"name": &"idle_Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8axbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73enu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7o7a")
+}],
+"loop": true,
+"name": &"idle_Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82o86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7iym1")
+}],
+"loop": true,
+"name": &"walk_Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cewq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtlqb")
+}],
+"loop": true,
+"name": &"walk_Right",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_55jtl"]
+radius = 9.0
+height = 22.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k7o7a"]
+radius = 140.0
+
+[node name="Mole" type="CharacterBody2D"]
+script = ExtResource("1_b4fei")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_t8fr5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3gvst")
+animation = &"walk_Right"
+autoplay = "idle_Left"
+frame = 1
+frame_progress = 0.95147866
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CapsuleShape2D_55jtl")
+
+[node name="HPBar" type="Node2D" parent="."]
+
+[node name="Background" type="ColorRect" parent="HPBar"]
+offset_left = -16.0
+offset_top = -17.0
+offset_right = 16.0
+offset_bottom = -13.0
+
+[node name="Fill" type="ColorRect" parent="HPBar"]
+offset_left = -16.0
+offset_top = -17.0
+offset_right = 16.0
+offset_bottom = -13.0
+color = Color(0.7102787, 0.13985544, 0.26900554, 1)
+
+[node name="AggroRange" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange"]
+shape = SubResource("CircleShape2D_k7o7a")
+
+[connection signal="body_entered" from="AggroRange" to="." method="_on_aggro_range_body_entered"]
+[connection signal="body_exited" from="AggroRange" to="." method="_on_aggro_range_body_exited"]
