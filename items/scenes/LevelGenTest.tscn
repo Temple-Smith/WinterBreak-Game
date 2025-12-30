@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvm8xenepy06w"]
+
+[ext_resource type="Script" uid="uid://cnu2g0d0ayaag" path="res://scripts/level_gen_test.gd" id="1_w1ms3"]
+[ext_resource type="Texture2D" uid="uid://bguihvkiukfu4" path="res://art/tileset/test_TileMap.png" id="2_ps8le"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ps8le"]
+texture = ExtResource("2_ps8le")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_svq24"]
+tile_size = Vector2i(32, 32)
+sources/2 = SubResource("TileSetAtlasSource_ps8le")
+
+[node name="LevelGenTest" type="Node2D"]
+script = ExtResource("1_w1ms3")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_svq24")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Randomize"
