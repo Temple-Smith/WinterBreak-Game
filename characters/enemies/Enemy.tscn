@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://dde8tqn77wkoq"]
 
-[ext_resource type="Script" uid="uid://chc5xb8ior121" path="res://scripts/enemy.gd" id="1_0o2lx"]
+[ext_resource type="Script" uid="uid://chc5xb8ior121" path="res://characters/enemies/enemy.gd" id="1_0o2lx"]
 [ext_resource type="Texture2D" uid="uid://cho3bh7dvfwud" path="res://art/enemies/mole-Sheet.png" id="2_55jtl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t8fr5"]

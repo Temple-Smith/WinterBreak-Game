@@ -1,7 +1,7 @@
 class_name Enemy extends CharacterBody2D
 enum State { IDLE, AGGRO }
 
-@export var projectile_scene: PackedScene = preload("res://scenes/player/projectile.tscn")
+const projectile_scene = preload("uid://bwkspd3vggkhr")
 @export var fire_rate: float = 2.0
 @export var attack_range: float = 250.0
 @export var speed := 10.0
@@ -84,7 +84,8 @@ func take_damage(amount: int) -> void:
 	update_hp_bar()
 	flash_red()
 	
-	var dmg_scene: PackedScene = preload("res://Scenes/Effects/DamageNumber.tscn")
+	
+	const dmg_scene = preload("uid://cahrics8oxtdd")
 	var dmg_instance: Node2D = dmg_scene.instantiate()
 	dmg_instance.position = global_position + Vector2(0, -20)
 	get_parent().add_child(dmg_instance)

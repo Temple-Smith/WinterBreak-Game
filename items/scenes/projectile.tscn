@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bwkspd3vggkhr"]
 
-[ext_resource type="Script" uid="uid://b44ej4nkd3oxj" path="res://scenes/player/projectile.gd" id="1_xebok"]
+[ext_resource type="Script" uid="uid://b44ej4nkd3oxj" path="res://items/scenes/projectile.gd" id="1_xebok"]
 [ext_resource type="Texture2D" uid="uid://dytay5emqqlgn" path="res://art/animations/projectile-Sheet.png" id="2_c28ns"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c28ns"]

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 @export var fire_rate: float = 0.25
-@export var projectile_scene: PackedScene = preload("res://scenes/player/projectile.tscn")
+const projectile_scene = preload("uid://bwkspd3vggkhr")
 @export var max_health: int = 10
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var interaction_area: Area2D = $InteractionArea
@@ -93,8 +93,10 @@ func _handle_movement() -> void:
 func _handle_input() -> void:
 	if Input.is_action_just_pressed("interact"):
 		var areas: Array[Area2D] = interaction_area.get_overlapping_areas()
-		if areas.size() > 0 and areas[0].has_method("interact"):
-			areas[0].interact(self)
+		if areas.size() > 0:
+			for area in areas:
+				if area.has_method("interact"):
+					area.interact(self)
 
 func set_disable_input(disable: bool) -> void:
 	_disable_input = disable
@@ -120,6 +122,21 @@ func attack() -> void:
 	get_parent().add_child(projectile)
 	
 func _on_attack_hit_box_area_entered(area: Area2D) -> void:
-	var enemy := area.get_parent()
-	if enemy is Enemy:
-		enemy.take_damage(1)	
+	var parent := area.get_parent()
+	
+	#Hit enemies
+	if parent is Enemy:
+		parent.take_damage(1)
+		return
+		
+	#Hit ore
+	if area.is_in_group("ore") and area.has_method("hit"):
+		print("Hit ore AREA:", area.name)
+		area.hit(1)
+	elif parent.is_in_group("ore") and parent.has_method("hit"):
+		print("Hit ore PARENT:", parent.name)
+		parent.hit(1)
+	else:
+		#debug
+		print("AttackHitBox hit something else:", area.name, "parent:", parent.name)
+		
