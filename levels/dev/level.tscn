@@ -1,16 +1,16 @@
 [gd_scene load_steps=14 format=4 uid="uid://bmmik1n2jet1i"]
 
 [ext_resource type="Script" uid="uid://bua2fgt735crh" path="res://scripts/level.gd" id="1_mis7f"]
-[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2_eosvf"]
-[ext_resource type="PackedScene" path="res://scenes/shop-guy.tscn" id="3_cu7eo"]
+[ext_resource type="PackedScene" uid="uid://qhltgybk1u3s" path="res://characters/player/player.tscn" id="2_eosvf"]
+[ext_resource type="PackedScene" uid="uid://dnree7wd72gil" path="res://characters/npcs/shop-guy.tscn" id="3_cu7eo"]
 [ext_resource type="Script" uid="uid://bcsnotu0u7e42" path="res://items/base classes/base_item.gd" id="4_fdtuh"]
 [ext_resource type="Resource" uid="uid://bu450urh4aubu" path="res://items/atk_up_10.tres" id="5_vpb3x"]
 [ext_resource type="Resource" uid="uid://2shf5acfuaq7" path="res://items/hp_up_10.tres" id="6_7bbpx"]
 [ext_resource type="Resource" uid="uid://dnnq666v4pcre" path="res://items/hp_up_20.tres" id="7_a2wt0"]
-[ext_resource type="PackedScene" path="res://scenes/status-ui.tscn" id="8_dhay2"]
-[ext_resource type="PackedScene" path="res://scenes/levels/props/money.tscn" id="9_07qge"]
+[ext_resource type="PackedScene" uid="uid://bom0awiikr6x3" path="res://ui/status-ui.tscn" id="8_dhay2"]
+[ext_resource type="PackedScene" uid="uid://bksj4fdxrvrbc" path="res://levels/props/money.tscn" id="9_07qge"]
 [ext_resource type="Texture2D" uid="uid://bguihvkiukfu4" path="res://art/tileset/test_TileMap.png" id="10_toppu"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/Enemy.tscn" id="11_w1il0"]
+[ext_resource type="PackedScene" uid="uid://dde8tqn77wkoq" path="res://characters/enemies/Enemy.tscn" id="11_w1il0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t1rx8"]
 texture = ExtResource("10_toppu")
@@ -37,7 +37,7 @@ items = Array[ExtResource("4_fdtuh")]([ExtResource("5_vpb3x"), ExtResource("6_7b
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="StatusUi" parent="CanvasLayer" instance=ExtResource("8_dhay2")]
+[node name="StatusUi" parent="CanvasLayer" groups=["status_ui"] instance=ExtResource("8_dhay2")]
 
 [node name="Money" parent="." instance=ExtResource("9_07qge")]
 position = Vector2(574, 252)

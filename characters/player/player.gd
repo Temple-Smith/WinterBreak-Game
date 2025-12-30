@@ -19,6 +19,12 @@ func take_damage(amount: int) -> void:
 	flash_red()
 	current_health -= amount
 	current_health = max(current_health, 0)
+	
+	#update the healthbar
+	var ui: Control = get_tree().get_first_node_in_group("status_ui")
+	if ui:
+		ui.update_hp_bar()
+	
 	if current_health <= 0:
 		die()
 
