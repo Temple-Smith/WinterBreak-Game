@@ -1,7 +1,7 @@
 class_name Enemy extends CharacterBody2D
 enum State { IDLE, AGGRO }
 
-@export var projectile_scene: PackedScene = preload("res://scenes/player/projectile.tscn")
+const projectile_scene = preload("uid://bwkspd3vggkhr")
 @export var fire_rate: float = 2.0
 @export var attack_range: float = 250.0
 @export var speed := 10.0
