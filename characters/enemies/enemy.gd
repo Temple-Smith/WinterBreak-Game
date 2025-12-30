@@ -89,7 +89,8 @@ func take_damage(amount: int) -> void:
 	update_hp_bar()
 	flash_red()
 	
-	var dmg_scene: PackedScene = preload("res://Scenes/Effects/DamageNumber.tscn")
+	
+	const dmg_scene = preload("uid://cahrics8oxtdd")
 	var dmg_instance: Node2D = dmg_scene.instantiate()
 	dmg_instance.position = global_position + Vector2(0, -20)
 	get_parent().add_child(dmg_instance)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=3 uid="uid://qhltgybk1u3s"]
 
-[ext_resource type="Script" uid="uid://hjyqxvwyh57q" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://hjyqxvwyh57q" path="res://characters/player/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://b256emvf1f6ad" path="res://art/animations/miner-Sheet.png" id="2_g2els"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]

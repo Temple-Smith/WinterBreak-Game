@@ -93,8 +93,10 @@ func _handle_movement() -> void:
 func _handle_input() -> void:
 	if Input.is_action_just_pressed("interact"):
 		var areas: Array[Area2D] = interaction_area.get_overlapping_areas()
-		if areas.size() > 0 and areas[0].has_method("interact"):
-			areas[0].interact(self)
+		if areas.size() > 0:
+			for area in areas:
+				if area.has_method("interact"):
+					area.interact(self)
 
 func set_disable_input(disable: bool) -> void:
 	_disable_input = disable
