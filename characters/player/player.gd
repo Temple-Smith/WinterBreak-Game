@@ -1,18 +1,62 @@
 extends CharacterBody2D
 
 const SPEED = 100.0
+@export var fire_rate: float = 0.25
+const projectile_scene = preload("uid://bwkspd3vggkhr")
+@export var max_health: int = 10
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var interaction_area: Area2D = $InteractionArea
-@onready var slash_sprite: AnimatedSprite2D = $SlashSprite
 
+var fire_timer: float = 0.0
+var is_firing: bool = false
+var fire_cooldown: float = 0.0
 var is_attacking := false
 var facing := "Right"
 var _disable_input: bool = false
+var current_health: int = max_health
+
+func take_damage(amount: int) -> void:
+	flash_red()
+	current_health -= amount
+	current_health = max(current_health, 0)
+	if current_health <= 0:
+		die()
+
+func flash_red() -> void:
+	sprite.modulate = Color(1,0.3,0.3)
+	await get_tree().create_timer(0.1).timeout
+	sprite.modulate = Color.WHITE
+
+func die() -> void:
+	_disable_input = true
+	queue_free()
+	
 
 func _physics_process(delta: float) -> void:
 	if not _disable_input: _handle_movement()
 
 func _process(delta: float) -> void:
+	#fire cool-down for sweaty chud nerds
+	if fire_cooldown > 0.0:
+		fire_cooldown -= delta
+	
+	if fire_timer > 0.0:
+		fire_timer -= delta
+	
+	if not _disable_input:
+		handle_attack_input()
+	
+func handle_attack_input() -> void:
+	#if Input.is_action_just_pressed("attack") and fire_cooldown <= 0.0:
+		#attack()
+		#fire_cooldown = fire_rate
+	#Check if mouse button is held
+	is_firing = Input.is_action_pressed("attack")
+	
+	if is_firing and fire_timer <= 0:
+		attack()
+		fire_timer = fire_rate
+	
 	if not _disable_input: _handle_input()
 
 func _handle_movement() -> void:
@@ -47,13 +91,12 @@ func _handle_movement() -> void:
 	move_and_slide()
 
 func _handle_input() -> void:
-	if Input.is_action_just_pressed("attack"):
-		attack()
-	
 	if Input.is_action_just_pressed("interact"):
 		var areas: Array[Area2D] = interaction_area.get_overlapping_areas()
-		if areas.size() > 0 and areas[0].has_method("interact"):
-			areas[0].interact(self)
+		if areas.size() > 0:
+			for area in areas:
+				if area.has_method("interact"):
+					area.interact(self)
 
 func set_disable_input(disable: bool) -> void:
 	_disable_input = disable
@@ -65,30 +108,18 @@ func _on_interaction_area_area_entered(area: Area2D) -> void:
 		area.queue_free()
 
 func attack() -> void:
-	const ATTACK_DISTANCE: float = 18.0  # in pixels
-	is_attacking = true
-	velocity = Vector2.ZERO
+	var mouse_pos: Vector2 = get_global_mouse_position()
+	var direction: Vector2 = (mouse_pos - global_position).normalized()
 	
-	slash_sprite.visible = true
-	slash_sprite.play("attack_" + facing)
+	const SPAWN_DISTANCE: float = 10.0
+	var spawn_pos: Vector2 = global_position + direction * SPAWN_DISTANCE
 	
-	#flip hitbox depending on faced direction
-	if facing == "Right":
-		$AttackHitBox.position.x = ATTACK_DISTANCE
-		slash_sprite.position.x = ATTACK_DISTANCE
-		slash_sprite.scale.x = 1
-	else:
-		$AttackHitBox.position.x = -ATTACK_DISTANCE
-		slash_sprite.position.x = -ATTACK_DISTANCE
-		slash_sprite.scale.x = 1
-		
-		
-	$AttackHitBox.monitoring = true
-
-func _on_slash_sprite_animation_finished() -> void:
-	slash_sprite.visible = false
-	$AttackHitBox.monitoring = false
-	is_attacking = false
+	var projectile: Projectile = projectile_scene.instantiate() as Projectile
+	projectile.position = spawn_pos
+	#projectile.velocity = direction * projectile.speed
+	projectile.setup(direction, Projectile.Owner.PLAYER)
+	
+	get_parent().add_child(projectile)
 	
 func _on_attack_hit_box_area_entered(area: Area2D) -> void:
 	var parent := area.get_parent()

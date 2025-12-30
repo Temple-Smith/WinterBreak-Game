@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=4 uid="uid://bmmik1n2jet1i"]
 
 [ext_resource type="Script" uid="uid://bua2fgt735crh" path="res://scripts/level.gd" id="1_2elk7"]
-[ext_resource type="PackedScene" uid="uid://qhltgybk1u3s" path="res://scenes/player/player.tscn" id="2_v1dcv"]
-[ext_resource type="PackedScene" uid="uid://dnree7wd72gil" path="res://scenes/shop-guy.tscn" id="3_g28c4"]
+[ext_resource type="PackedScene" uid="uid://qhltgybk1u3s" path="res://characters/player/player.tscn" id="2_v1dcv"]
+[ext_resource type="PackedScene" uid="uid://dnree7wd72gil" path="res://characters/npcs/shop-guy.tscn" id="3_g28c4"]
 [ext_resource type="Script" uid="uid://bcsnotu0u7e42" path="res://items/base classes/base_item.gd" id="4_q4q57"]
 [ext_resource type="Resource" uid="uid://bu450urh4aubu" path="res://items/atk_up_10.tres" id="5_vcj1q"]
 [ext_resource type="Resource" uid="uid://2shf5acfuaq7" path="res://items/hp_up_10.tres" id="6_adk5w"]
