@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bv4tyih8540kx"]
 
-[ext_resource type="Script" uid="uid://ou8y2gpvrm3l" path="res://ui/shop_ui.gd" id="1_6hffh"]
+[ext_resource type="Script" uid="uid://ou8y2gpvrm3l" path="res://ui/shop_ui.gd" id="1_70a33"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_6hffh"]
 
@@ -16,7 +16,7 @@ offset_right = 89.5
 offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_6hffh")
+script = ExtResource("1_70a33")
 
 [node name="MainVBox" type="VBoxContainer" parent="."]
 layout_mode = 2

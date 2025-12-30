@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AOEThrowableItem" load_steps=2 format=3 uid="uid://b5vdm8aavmhb2"]
+
+[ext_resource type="Script" uid="uid://b542asbg47kud" path="res://items/base classes/area_of_effect_throwable_item.gd" id="1_37hyx"]
+
+[resource]
+script = ExtResource("1_37hyx")
+metadata/_custom_type_script = "uid://b542asbg47kud"

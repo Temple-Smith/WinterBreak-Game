@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3s2oijv3xrwb"]
+
+[ext_resource type="Texture2D" uid="uid://chmg0a65qcgpn" path="res://icon.svg" id="1_7q828"]
+
+[node name="ItemHotbar" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -536.0
+offset_top = -168.0
+offset_right = 536.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 0
+auto_width = true
+item_count = 8
+max_columns = 8
+icon_mode = 0
+item_0/text = "Placeholder 1"
+item_0/icon = ExtResource("1_7q828")
+item_1/text = "Placeholder 2"
+item_1/icon = ExtResource("1_7q828")
+item_2/text = "Placeholder 3"
+item_2/icon = ExtResource("1_7q828")
+item_3/text = "Placeholder 4"
+item_3/icon = ExtResource("1_7q828")
+item_4/text = "Placeholder 5"
+item_4/icon = ExtResource("1_7q828")
+item_5/text = "Placeholder 6"
+item_5/icon = ExtResource("1_7q828")
+item_6/text = "Placeholder 7"
+item_6/icon = ExtResource("1_7q828")
+item_7/text = "Placeholder 8"
+item_7/icon = ExtResource("1_7q828")

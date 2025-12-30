@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ThrowableItem" load_steps=5 format=3 uid="uid://bmek6cablb46j"]
+
+[ext_resource type="PackedScene" uid="uid://7dxk1eepst6k" path="res://items/scenes/spear.tscn" id="1_n750c"]
+[ext_resource type="Script" uid="uid://bbyjtc4t72l2c" path="res://items/base classes/throwable_item.gd" id="1_teler"]
+[ext_resource type="Texture2D" uid="uid://dytay5emqqlgn" path="res://art/animations/projectile-Sheet.png" id="1_u0kxu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjyrg"]
+atlas = ExtResource("1_u0kxu")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_teler")
+throw_distance = 10.0
+effect_intensity = 3.0
+item_name = &"Spear"
+icon = SubResource("AtlasTexture_hjyrg")
+description = "The flimsy spear you found at value village"
+item_scene = ExtResource("1_n750c")
+metadata/_custom_type_script = "uid://bbyjtc4t72l2c"

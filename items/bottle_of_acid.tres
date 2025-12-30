@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="AOEThrowableItem" load_steps=2 format=3 uid="uid://dof4pkhx8qm1p"]
+
+[ext_resource type="Script" uid="uid://b542asbg47kud" path="res://items/base classes/area_of_effect_throwable_item.gd" id="1_ipjhn"]
+
+[resource]
+script = ExtResource("1_ipjhn")
+persistence_duration = 10.0
+area_of_effect_radius = 10.0
+effect_interval = 3.0
+max_uses = 5
+consumed_on_use = true
+throw_distance = 20.0
+effect_type = 3
+effect_intensity = 5.0
+item_name = &"Bottle of Acid"
+description = "A bottle of hydrochloric acid"
+price = 69
+metadata/_custom_type_script = "uid://b542asbg47kud"

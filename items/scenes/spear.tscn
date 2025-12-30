@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://7dxk1eepst6k"]
+
+[ext_resource type="Texture2D" uid="uid://dytay5emqqlgn" path="res://art/animations/projectile-Sheet.png" id="1_0y773"]
+[ext_resource type="Script" uid="uid://o5q6by28shlp" path="res://items/scenes/spear.gd" id="1_vj0mn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vj0mn"]
+size = Vector2(26, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c28ns"]
+atlas = ExtResource("1_0y773")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qq8pc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c28ns")
+}],
+"loop": true,
+"name": &"player_Projectile",
+"speed": 5.0
+}]
+
+[node name="Spear" type="Area2D"]
+script = ExtResource("1_vj0mn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vj0mn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.4210855e-14, -8.881784e-15)
+rotation = -0.34906584
+scale = Vector2(2.15625, 0.8125)
+sprite_frames = SubResource("SpriteFrames_qq8pc")
+animation = &"player_Projectile"
