@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bmmik1n2jet1i"]
+[gd_scene load_steps=17 format=4 uid="uid://bmmik1n2jet1i"]
 
 [ext_resource type="Script" uid="uid://bua2fgt735crh" path="res://scripts/level.gd" id="1_mis7f"]
 [ext_resource type="PackedScene" uid="uid://qhltgybk1u3s" path="res://characters/player/player.tscn" id="2_eosvf"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dde8tqn77wkoq" path="res://characters/enemies/Enemy.tscn" id="11_w1il0"]
 [ext_resource type="PackedScene" uid="uid://ddde6ngyk7ojs" path="res://levels/props/ore.tscn" id="12_eosvf"]
 [ext_resource type="PackedScene" uid="uid://bq6c4lo2m6hv7" path="res://characters/enemies/mole.tscn" id="13_cu7eo"]
+[ext_resource type="AudioStream" uid="uid://3wavyy244vg7" path="res://art/Echoes of the Deep.mp3" id="14_fdtuh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t1rx8"]
 texture = ExtResource("10_toppu")
@@ -32,6 +33,7 @@ script = ExtResource("1_mis7f")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_eosvf")]
 position = Vector2(570, 307)
+collision_mask = 197
 
 [node name="ShopGuy" parent="." instance=ExtResource("3_cu7eo")]
 position = Vector2(729, 262)
@@ -90,3 +92,10 @@ position = Vector2(730, 377)
 
 [node name="Mole3" parent="." instance=ExtResource("13_cu7eo")]
 position = Vector2(636, 243)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_fdtuh")
+autoplay = true
+
+[node name="Money4" parent="." instance=ExtResource("9_07qge")]
+position = Vector2(449, 346)
