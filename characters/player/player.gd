@@ -19,6 +19,12 @@ func take_damage(amount: int) -> void:
 	flash_red()
 	current_health -= amount
 	current_health = max(current_health, 0)
+	
+	#update the healthbar
+	var ui: Control = get_tree().get_first_node_in_group("status_ui")
+	if ui:
+		ui.update_hp_bar()
+	
 	if current_health <= 0:
 		die()
 
@@ -130,13 +136,17 @@ func _on_attack_hit_box_area_entered(area: Area2D) -> void:
 		return
 		
 	#Hit ore
-	if area.is_in_group("ore") and area.has_method("hit"):
-		print("Hit ore AREA:", area.name)
-		area.hit(1)
-	elif parent.is_in_group("ore") and parent.has_method("hit"):
-		print("Hit ore PARENT:", parent.name)
-		parent.hit(1)
-	else:
-		#debug
-		print("AttackHitBox hit something else:", area.name, "parent:", parent.name)
+	if parent is Ore:
+		parent.take_damage(1)
+		print("Ore is hit!")
+		return
+	#if area.is_in_group("ore") and area.has_method("take_damage"):
+		#print("Hit ore AREA:", area.name)
+		#area.take_damage(1)
+	#elif parent.is_in_group("ore") and parent.has_method("take_damage"):
+		#print("Hit ore PARENT:", parent.name)
+		#parent.take_damage(1)
+	#else:
+		##debug
+		#print("AttackHitBox hit something else:", area.name, "parent:", parent.name)
 		

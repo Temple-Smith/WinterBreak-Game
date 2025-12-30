@@ -1,69 +1,92 @@
-[gd_scene load_steps=13 format=4 uid="uid://bmmik1n2jet1i"]
+[gd_scene load_steps=16 format=4 uid="uid://bmmik1n2jet1i"]
 
-[ext_resource type="Script" uid="uid://bua2fgt735crh" path="res://scripts/level.gd" id="1_2elk7"]
-[ext_resource type="PackedScene" uid="uid://qhltgybk1u3s" path="res://characters/player/player.tscn" id="2_v1dcv"]
-[ext_resource type="PackedScene" uid="uid://dnree7wd72gil" path="res://characters/npcs/shop-guy.tscn" id="3_g28c4"]
-[ext_resource type="Script" uid="uid://bcsnotu0u7e42" path="res://items/base classes/base_item.gd" id="4_q4q57"]
-[ext_resource type="Resource" uid="uid://bu450urh4aubu" path="res://items/atk_up_10.tres" id="5_vcj1q"]
-[ext_resource type="Resource" uid="uid://2shf5acfuaq7" path="res://items/hp_up_10.tres" id="6_adk5w"]
-[ext_resource type="Resource" uid="uid://dnnq666v4pcre" path="res://items/hp_up_20.tres" id="7_ysn8j"]
-[ext_resource type="PackedScene" uid="uid://bom0awiikr6x3" path="res://scenes/status-ui.tscn" id="8_qguvd"]
-[ext_resource type="PackedScene" uid="uid://bksj4fdxrvrbc" path="res://scenes/levels/props/money.tscn" id="9_3g6sb"]
-[ext_resource type="TileSet" uid="uid://tfp54jr2rmh3" path="res://art/tileset/ground.tres" id="10_v1dcv"]
-[ext_resource type="PackedScene" uid="uid://dde8tqn77wkoq" path="res://scenes/enemies/Enemy.tscn" id="11_wyw0r"]
-[ext_resource type="PackedScene" uid="uid://ddde6ngyk7ojs" path="res://scenes/levels/props/ore.tscn" id="13_g28c4"]
+[ext_resource type="Script" uid="uid://bua2fgt735crh" path="res://scripts/level.gd" id="1_mis7f"]
+[ext_resource type="PackedScene" uid="uid://qhltgybk1u3s" path="res://characters/player/player.tscn" id="2_eosvf"]
+[ext_resource type="PackedScene" uid="uid://dnree7wd72gil" path="res://characters/npcs/shop-guy.tscn" id="3_cu7eo"]
+[ext_resource type="Script" uid="uid://bcsnotu0u7e42" path="res://items/base classes/base_item.gd" id="4_fdtuh"]
+[ext_resource type="Resource" uid="uid://bu450urh4aubu" path="res://items/atk_up_10.tres" id="5_vpb3x"]
+[ext_resource type="Resource" uid="uid://2shf5acfuaq7" path="res://items/hp_up_10.tres" id="6_7bbpx"]
+[ext_resource type="Resource" uid="uid://dnnq666v4pcre" path="res://items/hp_up_20.tres" id="7_a2wt0"]
+[ext_resource type="PackedScene" uid="uid://bom0awiikr6x3" path="res://ui/status-ui.tscn" id="8_dhay2"]
+[ext_resource type="PackedScene" uid="uid://bksj4fdxrvrbc" path="res://levels/props/money.tscn" id="9_07qge"]
+[ext_resource type="Texture2D" uid="uid://bguihvkiukfu4" path="res://art/tileset/test_TileMap.png" id="10_toppu"]
+[ext_resource type="PackedScene" uid="uid://dde8tqn77wkoq" path="res://characters/enemies/Enemy.tscn" id="11_w1il0"]
+[ext_resource type="PackedScene" uid="uid://ddde6ngyk7ojs" path="res://levels/props/ore.tscn" id="12_eosvf"]
+[ext_resource type="PackedScene" uid="uid://bq6c4lo2m6hv7" path="res://characters/enemies/mole.tscn" id="13_cu7eo"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t1rx8"]
+texture = ExtResource("10_toppu")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_8iemx"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/2 = SubResource("TileSetAtlasSource_t1rx8")
 
 [node name="Level" type="Node2D"]
-script = ExtResource("1_2elk7")
+script = ExtResource("1_mis7f")
 
-[node name="Player" parent="." groups=["player"] instance=ExtResource("2_v1dcv")]
-position = Vector2(598, 315)
+[node name="Player" parent="." groups=["player"] instance=ExtResource("2_eosvf")]
+position = Vector2(570, 307)
 
-[node name="ShopGuy" parent="." instance=ExtResource("3_g28c4")]
+[node name="ShopGuy" parent="." instance=ExtResource("3_cu7eo")]
 position = Vector2(729, 262)
-items = Array[ExtResource("4_q4q57")]([ExtResource("5_vcj1q"), ExtResource("6_adk5w"), ExtResource("7_ysn8j")])
+items = Array[ExtResource("4_fdtuh")]([ExtResource("5_vpb3x"), ExtResource("6_7bbpx"), ExtResource("7_a2wt0")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="StatusUi" parent="CanvasLayer" instance=ExtResource("8_qguvd")]
+[node name="StatusUi" parent="CanvasLayer" groups=["status_ui"] instance=ExtResource("8_dhay2")]
 
-[node name="Money" parent="." instance=ExtResource("9_3g6sb")]
+[node name="Money" parent="." instance=ExtResource("9_07qge")]
 position = Vector2(574, 252)
 metadata/amount = 10
 
-[node name="Money2" parent="." instance=ExtResource("9_3g6sb")]
+[node name="Money2" parent="." instance=ExtResource("9_07qge")]
 position = Vector2(609, 257)
 metadata/amount = 10
 
-[node name="Money3" parent="." instance=ExtResource("9_3g6sb")]
+[node name="Money3" parent="." instance=ExtResource("9_07qge")]
 position = Vector2(548, 279)
 metadata/amount = 10
 
-[node name="ShopGuy2" parent="." instance=ExtResource("3_g28c4")]
+[node name="ShopGuy2" parent="." instance=ExtResource("3_cu7eo")]
 position = Vector2(694, 337)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -1
 position = Vector2(8, 10)
-tile_map_data = PackedByteArray("AAAPAAYAAgACAAAAAAAQAAYAAgACAAAAAAARAAYAAgACAAAAAAASAAYAAgACAAAAAAATAAYAAgACAAAAAAAUAAYAAgACAAAAAAAVAAYAAgACAAAAAAAWAAYAAgACAAAAAAAXAAYAAgACAAAAAAAYAAYAAgACAAAAAAAOAAYAAgACAAAAAAANAAYAAgACAAAAAAAMAAYAAgACAAAAAAAMAAcAAgACAAAAAAAMAAgAAgACAAAAAAAMAAkAAgACAAAAAAAMAAoAAgACAAAAAAAMAAsAAgACAAAAAAAMAAwAAgACAAAAAAANAAwAAgACAAAAAAAOAAwAAgACAAAAAAAPAAwAAgACAAAAAAAQAAwAAgACAAAAAAARAAwAAgACAAAAAAASAAwAAgACAAAAAAATAAwAAgACAAAAAAAUAAwAAgACAAAAAAAVAAwAAgACAAAAAAAWAAwAAgACAAAAAAAXAAwAAgACAAAAAAAYAAwAAgACAAAAAAAYAAcAAgACAAAAAAAYAAgAAgACAAAAAAAYAAkAAgACAAAAAAAYAAoAAgACAAAAAAAYAAsAAgACAAAAAAANAAcAAgABAAAAAAANAAgAAgAAAAAAAAANAAkAAgABAAAAAAANAAoAAgABAAAAAAANAAsAAgABAAAAAAAOAAsAAgABAAAAAAAOAAoAAgABAAAAAAAOAAkAAgABAAAAAAAOAAgAAgABAAAAAAAOAAcAAgABAAAAAAAPAAcAAgABAAAAAAAQAAcAAgAAAAAAAAARAAcAAgABAAAAAAASAAcAAgABAAAAAAATAAcAAgABAAAAAAAUAAcAAgABAAAAAAAVAAcAAgABAAAAAAAWAAcAAgABAAAAAAAXAAcAAgAAAAAAAAAXAAgAAgABAAAAAAAWAAgAAgABAAAAAAAVAAgAAgABAAAAAAAUAAgAAgABAAAAAAATAAgAAgABAAAAAAASAAgAAgABAAAAAAARAAgAAgABAAAAAAAQAAgAAgABAAAAAAAPAAgAAgABAAAAAAAPAAkAAgABAAAAAAAQAAkAAgABAAAAAAARAAkAAgABAAAAAAASAAkAAgABAAAAAAATAAkAAgABAAAAAAAUAAkAAgABAAAAAAAVAAkAAgAAAAAAAAAWAAkAAgABAAAAAAAXAAkAAgABAAAAAAAXAAoAAgABAAAAAAAWAAoAAgABAAAAAAAVAAoAAgABAAAAAAAUAAoAAgABAAAAAAATAAoAAgABAAAAAAASAAoAAgABAAAAAAARAAoAAgABAAAAAAAQAAoAAgABAAAAAAAPAAoAAgAAAAAAAAAPAAsAAgABAAAAAAAQAAsAAgABAAAAAAARAAsAAgABAAAAAAASAAsAAgABAAAAAAATAAsAAgAAAAAAAAAUAAsAAgABAAAAAAAVAAsAAgABAAAAAAAWAAsAAgABAAAAAAAXAAsAAgABAAAAAAA=")
-tile_set = ExtResource("10_v1dcv")
+tile_map_data = PackedByteArray("AAAPAAYAAgACAAAAAAAQAAYAAgACAAAAAAARAAYAAgACAAAAAAASAAYAAgACAAAAAAATAAYAAgACAAAAAAAUAAYAAgACAAAAAAAVAAYAAgACAAAAAAAWAAYAAgACAAAAAAAXAAYAAgACAAAAAAAYAAYAAgACAAAAAAAOAAYAAgACAAAAAAANAAYAAgACAAAAAAAMAAYAAgACAAAAAAAMAAcAAgACAAAAAAAMAAgAAgACAAAAAAAMAAkAAgACAAAAAAAMAAoAAgACAAAAAAAMAAsAAgACAAAAAAAMAAwAAgACAAAAAAANAAwAAgACAAAAAAAOAAwAAgACAAAAAAAPAAwAAgACAAAAAAAQAAwAAgACAAAAAAARAAwAAgACAAAAAAASAAwAAgACAAAAAAATAAwAAgACAAAAAAAUAAwAAgACAAAAAAAVAAwAAgACAAAAAAAWAAwAAgACAAAAAAAXAAwAAgACAAAAAAAYAAwAAgACAAAAAAAYAAcAAgACAAAAAAAYAAgAAgACAAAAAAAYAAkAAgACAAAAAAAYAAoAAgACAAAAAAAYAAsAAgACAAAAAAANAAcAAgABAAAAAAANAAgAAgAAAAAAAAANAAkAAgABAAAAAAANAAoAAgABAAAAAAANAAsAAgABAAAAAAAOAAsAAgABAAAAAAAOAAoAAgABAAAAAAAOAAkAAgABAAAAAAAOAAcAAgABAAAAAAAPAAcAAgABAAAAAAAQAAcAAgAAAAAAAAARAAcAAgABAAAAAAASAAcAAgABAAAAAAATAAcAAgABAAAAAAAUAAcAAgABAAAAAAAVAAcAAgABAAAAAAAWAAcAAgABAAAAAAAXAAcAAgAAAAAAAAAXAAgAAgABAAAAAAAWAAgAAgABAAAAAAAVAAgAAgABAAAAAAAUAAgAAgABAAAAAAATAAgAAgABAAAAAAASAAgAAgABAAAAAAARAAgAAgABAAAAAAAQAAgAAgABAAAAAAAPAAgAAgABAAAAAAAPAAkAAgABAAAAAAAQAAkAAgABAAAAAAARAAkAAgABAAAAAAASAAkAAgABAAAAAAATAAkAAgABAAAAAAAUAAkAAgABAAAAAAAVAAkAAgAAAAAAAAAWAAkAAgABAAAAAAAXAAkAAgABAAAAAAAXAAoAAgABAAAAAAAWAAoAAgABAAAAAAAVAAoAAgABAAAAAAAUAAoAAgABAAAAAAATAAoAAgABAAAAAAASAAoAAgABAAAAAAARAAoAAgABAAAAAAAQAAoAAgABAAAAAAAPAAoAAgAAAAAAAAAPAAsAAgABAAAAAAAQAAsAAgABAAAAAAARAAsAAgABAAAAAAASAAsAAgABAAAAAAATAAsAAgAAAAAAAAAUAAsAAgABAAAAAAAVAAsAAgABAAAAAAAWAAsAAgABAAAAAAAXAAsAAgABAAAAAAAOAAgAAgABAAAAAAA=")
+tile_set = SubResource("TileSet_8iemx")
 
-[node name="Mole" parent="." instance=ExtResource("11_wyw0r")]
-position = Vector2(530, 345)
+[node name="Mole" parent="." groups=["enemy"] instance=ExtResource("11_w1il0")]
+position = Vector2(502, 356)
+collision_layer = 4
+collision_mask = 80
 
-[node name="OreNodes" type="Node2D" parent="."]
+[node name="Ore" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(534, 334)
 
-[node name="Ore" parent="OreNodes" instance=ExtResource("13_g28c4")]
-position = Vector2(441, 247)
+[node name="Ore2" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(654, 379)
 
-[node name="Ore2" parent="OreNodes" instance=ExtResource("13_g28c4")]
-position = Vector2(441, 263)
+[node name="Ore3" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(584, 270)
 
-[node name="Ore3" parent="OreNodes" instance=ExtResource("13_g28c4")]
-position = Vector2(441, 279)
+[node name="Ore4" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(609, 291)
 
-[node name="Ore4" parent="OreNodes" instance=ExtResource("13_g28c4")]
-position = Vector2(441, 295)
+[node name="Ore5" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(491, 310)
 
-[node name="Ore5" parent="OreNodes" instance=ExtResource("13_g28c4")]
-position = Vector2(441, 311)
+[node name="Ore6" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(699, 247)
+
+[node name="Mole2" parent="." instance=ExtResource("13_cu7eo")]
+position = Vector2(730, 377)
+
+[node name="Mole3" parent="." instance=ExtResource("13_cu7eo")]
+position = Vector2(636, 243)
