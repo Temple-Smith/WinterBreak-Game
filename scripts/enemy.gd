@@ -55,18 +55,14 @@ func _physics_process(delta: float) -> void:
 				if fire_timer <= 0.0:
 					fire_at_player(direction)
 					fire_timer = fire_rate
-				
-				update_animation(direction)
-				
+				update_animation(direction)	
 	move_and_slide()
 
 func fire_at_player(direction: Vector2) -> void:
 	if projectile_scene == null:
 		return
-	
 	var spread_angle: float = 0.3
 	var bullets := 3
-	
 	for i in bullets:
 		# Calculate angle offset for each bullet
 		var t: float = float(i) / float(bullets - 1)  # 0..1
@@ -79,11 +75,10 @@ func fire_at_player(direction: Vector2) -> void:
 		projectile.setup(bullet_dir, Projectile.Owner.ENEMY)
 		get_parent().add_child(projectile)
  
-	
+
 func take_damage(amount: int) -> void:
 	if is_dead:
 		return
-	
 	current_hp -= amount
 	current_hp = clamp(current_hp, 0, max_health)
 	update_hp_bar()
@@ -110,9 +105,6 @@ func flash_red() -> void:
 func die() -> void:
 	is_dead = true
 	queue_free()
-	
-	
-
 
 func _on_aggro_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):

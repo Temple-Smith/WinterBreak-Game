@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bom0awiikr6x3"]
+[gd_scene load_steps=4 format=3 uid="uid://bom0awiikr6x3"]
 
 [ext_resource type="Script" uid="uid://b4eq1hcoksujt" path="res://scripts/status_ui.gd" id="1_y0gkx"]
+[ext_resource type="Texture2D" uid="uid://bf3a7oixodp3x" path="res://art/animations/hpBar_Background.png" id="2_fmibj"]
+[ext_resource type="Texture2D" uid="uid://q4sam2xf5exa" path="res://art/animations/hpBar_foreground.png" id="3_teqih"]
 
 [node name="StatusUi" type="Control"]
 layout_mode = 3
@@ -24,3 +26,12 @@ offset_right = 25.268997
 offset_bottom = 22.608002
 theme_override_colors/font_color = Color(0.3585462, 0.7077016, 0.4171248, 1)
 theme_override_font_sizes/font_size = 43
+
+[node name="HPBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 606.0
+offset_right = 151.0
+offset_bottom = 638.0
+texture_under = ExtResource("2_fmibj")
+texture_over = ExtResource("3_teqih")
