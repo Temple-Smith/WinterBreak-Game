@@ -62,6 +62,7 @@ func _on_confirm_button_pressed() -> void:
 		return
 		
 	item_description.text = "Bought item" + selected_item.item_name
+	Autoload.add_player_item(shop_guy.items[selected_index].duplicate(true))
 	shop_guy.items[selected_index] = null
 	Autoload.set_player_money(new_money)
 	
