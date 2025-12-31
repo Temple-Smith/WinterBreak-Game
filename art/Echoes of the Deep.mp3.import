@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3wavyy244vg7"
+path="res://.godot/imported/Echoes of the Deep.mp3-8a808ef4c5ce2ed9b16c43f6bff4b048.mp3str"
+
+[deps]
+
+source_file="res://art/Echoes of the Deep.mp3"
+dest_files=["res://.godot/imported/Echoes of the Deep.mp3-8a808ef4c5ce2ed9b16c43f6bff4b048.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

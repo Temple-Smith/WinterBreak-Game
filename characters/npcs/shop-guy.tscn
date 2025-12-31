@@ -1,8 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnree7wd72gil"]
+[gd_scene load_steps=8 format=3 uid="uid://dnree7wd72gil"]
 
 [ext_resource type="Script" uid="uid://s3b63ska4x24" path="res://characters/npcs/shop_guy.gd" id="1_pjm62"]
+[ext_resource type="Texture2D" uid="uid://b4pfa05nsqe2i" path="res://art/animations/shopkeeper-Sheet.png" id="2_051wa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_em8i3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y47x"]
+atlas = ExtResource("2_051wa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkhwt"]
+atlas = ExtResource("2_051wa")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksy2g"]
+atlas = ExtResource("2_051wa")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5tsc1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2y47x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkhwt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksy2g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="ShopGuy" type="Area2D"]
 script = ExtResource("1_pjm62")
@@ -10,3 +40,8 @@ script = ExtResource("1_pjm62")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_em8i3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5tsc1")
+autoplay = "default"
+frame_progress = 0.7736667
