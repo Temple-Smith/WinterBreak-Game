@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://chppy7ctq523s"]
 
-[ext_resource type="PackedScene" uid="uid://ddde6ngyk7ojs" path="res://levels/props/rock.tscn" id="1_df560"]
+[ext_resource type="PackedScene" uid="uid://ddde6ngyk7ojs" path="res://scenes/levels/props/ore.tscn" id="1_df560"]
 [ext_resource type="TileSet" uid="uid://bwrgggkutjwle" path="res://art/tileset/cave_tileset.tres" id="1_tuhby"]
 
 [node name="Playground" type="Node2D"]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bksj4fdxrvrbc"]
+[gd_scene load_steps=11 format=3 uid="uid://bksj4fdxrvrbc"]
 
+[ext_resource type="Script" uid="uid://c6sbkd817rsci" path="res://levels/props/money.gd" id="1_5og6s"]
 [ext_resource type="Texture2D" uid="uid://h8ivpc5341kq" path="res://art/animations/money-Sheet.png" id="1_v42d4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfmaa"]
@@ -56,6 +57,9 @@ animations = [{
 }]
 
 [node name="Money" type="Area2D" groups=["money"]]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_5og6s")
 metadata/amount = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -66,3 +70,5 @@ sprite_frames = SubResource("SpriteFrames_qwpq8")
 autoplay = "default"
 frame = 3
 frame_progress = 0.8637301
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

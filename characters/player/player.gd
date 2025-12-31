@@ -19,6 +19,12 @@ func take_damage(amount: int) -> void:
 	flash_red()
 	current_health -= amount
 	current_health = max(current_health, 0)
+	
+	#update the healthbar
+	var ui: Control = get_tree().get_first_node_in_group("status_ui")
+	if ui:
+		ui.update_hp_bar()
+	
 	if current_health <= 0:
 		die()
 
@@ -47,10 +53,6 @@ func _process(delta: float) -> void:
 		handle_attack_input()
 	
 func handle_attack_input() -> void:
-	#if Input.is_action_just_pressed("attack") and fire_cooldown <= 0.0:
-		#attack()
-		#fire_cooldown = fire_rate
-	#Check if mouse button is held
 	is_firing = Input.is_action_pressed("attack")
 	
 	if is_firing and fire_timer <= 0:
@@ -60,7 +62,6 @@ func handle_attack_input() -> void:
 	if not _disable_input: _handle_input()
 
 func _handle_movement() -> void:
-	
 	if is_attacking:
 		move_and_slide()
 		return
@@ -116,12 +117,14 @@ func attack() -> void:
 	
 	var projectile: Projectile = projectile_scene.instantiate() as Projectile
 	projectile.position = spawn_pos
-	#projectile.velocity = direction * projectile.speed
 	projectile.setup(direction, Projectile.Owner.PLAYER)
 	
 	get_parent().add_child(projectile)
 	
 func _on_attack_hit_box_area_entered(area: Area2D) -> void:
-	var enemy := area.get_parent()
-	if enemy is Enemy:
-		enemy.take_damage(1)	
+	var parent := area.get_parent()
+	
+	#Hit enemies
+	if parent is Enemy:
+		parent.take_damage(1)
+		return

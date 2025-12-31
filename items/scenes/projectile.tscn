@@ -36,9 +36,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Projectile" type="Area2D"]
+[node name="Projectile" type="Area2D" groups=["Projectile"]]
 collision_layer = 48
-collision_mask = 6
+collision_mask = 70
 script = ExtResource("1_xebok")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -51,7 +51,7 @@ scale = Vector2(2.15625, 0.8125)
 sprite_frames = SubResource("SpriteFrames_yvsue")
 animation = &"player_Projectile"
 
-[node name="moleProjectile" type="AnimatedSprite2D" parent="."]
+[node name="moleProjectile" type="AnimatedSprite2D" parent="." groups=["moleProjectile"]]
 sprite_frames = SubResource("SpriteFrames_c28ns")
 animation = &"mole_Projectile"
 

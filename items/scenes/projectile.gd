@@ -9,6 +9,7 @@ enum Owner { PLAYER, ENEMY }
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var enemy_sprite: AnimatedSprite2D = $moleProjectile
 
+
 var velocity: Vector2 = Vector2.ZERO
 var elapsed: float = 0.0
 var projectile_owner: Owner
@@ -19,6 +20,7 @@ func _ready() -> void:
 	# If setup was called before _ready, finish it now
 	if not is_setup and queued_direction != Vector2.ZERO:
 		_finish_setup(queued_direction, projectile_owner)
+	
 
 func _physics_process(delta: float) -> void:
 	position += velocity * delta
@@ -54,15 +56,29 @@ func _finish_setup(direction: Vector2, owner_type: Owner) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	var target := area.get_parent()
-	
 	# Miner hits enemy
 	if projectile_owner == Owner.PLAYER and target is Enemy:
 		target.take_damage(1)
 		queue_free()
 		return
+		
+	#Miner hit ore
+	if projectile_owner == Owner.PLAYER:
+		var ore := area.get_parent() as Ore
+		if ore:
+			ore.take_damage(1)
+			queue_free()
+			return
 	
 	# Enemy hits player
 	if projectile_owner == Owner.ENEMY and target.is_in_group("player"):
 		target.take_damage(1)
 		queue_free()
 		return
+	# Enemy hits ore	
+	if projectile_owner == Owner.ENEMY:
+		var ore := area.get_parent() as Ore
+		if ore:
+			queue_free()
+			return
+	

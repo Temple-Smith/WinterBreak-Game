@@ -17,3 +17,6 @@ func get_player_items() -> Array[BaseItem]:
 	
 func add_player_item(item: BaseItem) -> void:
 	player_items.append(item)
+
+func add_player_money(amount: int) -> void:
+	player_money += amount
