@@ -4,7 +4,7 @@ var map_width: int = 256
 var map_height: int = 128
 var noise_scale: float = 0.08
 
-var wall_threshold: float = 0.2
+var wall_threshold: float = 0.35
 var dirt_threshold: float = 0.5
 var rocky_threshold: float = 0.4
 

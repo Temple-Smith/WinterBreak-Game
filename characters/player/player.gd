@@ -53,10 +53,6 @@ func _process(delta: float) -> void:
 		handle_attack_input()
 	
 func handle_attack_input() -> void:
-	#if Input.is_action_just_pressed("attack") and fire_cooldown <= 0.0:
-		#attack()
-		#fire_cooldown = fire_rate
-	#Check if mouse button is held
 	is_firing = Input.is_action_pressed("attack")
 	
 	if is_firing and fire_timer <= 0:
@@ -66,7 +62,6 @@ func handle_attack_input() -> void:
 	if not _disable_input: _handle_input()
 
 func _handle_movement() -> void:
-	
 	if is_attacking:
 		move_and_slide()
 		return
@@ -122,7 +117,6 @@ func attack() -> void:
 	
 	var projectile: Projectile = projectile_scene.instantiate() as Projectile
 	projectile.position = spawn_pos
-	#projectile.velocity = direction * projectile.speed
 	projectile.setup(direction, Projectile.Owner.PLAYER)
 	
 	get_parent().add_child(projectile)
@@ -134,19 +128,3 @@ func _on_attack_hit_box_area_entered(area: Area2D) -> void:
 	if parent is Enemy:
 		parent.take_damage(1)
 		return
-		
-	#Hit ore
-	if parent is Ore:
-		parent.take_damage(1)
-		print("Ore is hit!")
-		return
-	#if area.is_in_group("ore") and area.has_method("take_damage"):
-		#print("Hit ore AREA:", area.name)
-		#area.take_damage(1)
-	#elif parent.is_in_group("ore") and parent.has_method("take_damage"):
-		#print("Hit ore PARENT:", parent.name)
-		#parent.take_damage(1)
-	#else:
-		##debug
-		#print("AttackHitBox hit something else:", area.name, "parent:", parent.name)
-		
