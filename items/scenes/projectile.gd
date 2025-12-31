@@ -6,10 +6,11 @@ enum Owner { PLAYER, ENEMY }
 @export var speed: float = 150.0
 @export var lifetime: float = 0.25
 
+
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var enemy_sprite: AnimatedSprite2D = $moleProjectile
 
-
+var damage: int = 1
 var velocity: Vector2 = Vector2.ZERO
 var elapsed: float = 0.0
 var projectile_owner: Owner
@@ -58,7 +59,7 @@ func _on_area_entered(area: Area2D) -> void:
 	var target := area.get_parent()
 	# Miner hits enemy
 	if projectile_owner == Owner.PLAYER and target is Enemy:
-		target.take_damage(1)
+		target.take_damage(damage)
 		queue_free()
 		return
 		
