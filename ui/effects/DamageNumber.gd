@@ -2,7 +2,7 @@ extends Node2D
 
 @export var float_speed: float = 30.0    # pixels/sec upward
 @export var lifetime: float = 0.8        # seconds
-@export var digit_spacing: float = 10.0  # pixels between digits
+@export var digit_spacing: float = 14.0  # pixels between digits
 
 
 var elapsed: float = 0.0
@@ -23,6 +23,7 @@ func setup(number: int) -> void:
 		sprite.texture = sprite_sheet
 		sprite.region_enabled = true
 		
+		# I wasn't thinking when I made the spritesheet so... yeah. Can be refactored later.
 		# Adjust indexing for 1–9, then 0
 		var frame_index: int = digit - 1  # 1–9 becomes 0–8
 		if digit == 0:
@@ -31,14 +32,6 @@ func setup(number: int) -> void:
 		sprite.region_rect = Rect2(frame_index * 16, 0, 16, 16)
 		sprite.position.x = start_x + i * digit_spacing
 		$Digits.add_child(sprite)
-	#for i in range(digits_str.length()):
-		#var digit: int = int(digits_str[i])
-		#var sprite: Sprite2D = Sprite2D.new()
-		#sprite.texture = sprite_sheet
-		#sprite.region_enabled = true
-		#sprite.region_rect = Rect2((digit-1) * 16, 0, 16, 16)  # frame from sprite sheet
-		#sprite.position.x = start_x + i * digit_spacing
-		#$Digits.add_child(sprite)
 
 func _process(delta: float) -> void:
 	elapsed += delta

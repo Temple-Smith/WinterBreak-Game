@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 @export var fire_rate: float = 0.25
-@export var attack_damage: int = 10
+@export var attack_damage: int = 5
 const projectile_scene = preload("uid://bwkspd3vggkhr")
 @export var max_health: int = 10
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D

@@ -1,7 +1,7 @@
 extends Node
 
 var canvas_layer: CanvasLayer = null
-var player_money: int = 67
+var player_money: int = 0
 
 func get_player_money() -> int:
 	return player_money
