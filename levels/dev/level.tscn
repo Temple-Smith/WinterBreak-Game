@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bmmik1n2jet1i"]
+[gd_scene load_steps=20 format=4 uid="uid://bmmik1n2jet1i"]
 
 [ext_resource type="Script" uid="uid://bua2fgt735crh" path="res://scripts/level.gd" id="1_mis7f"]
 [ext_resource type="PackedScene" uid="uid://qhltgybk1u3s" path="res://characters/player/player.tscn" id="2_eosvf"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dyhycvusto8yn" path="res://art/tileset/grass-Sheet.png" id="10_vpb3x"]
 [ext_resource type="PackedScene" uid="uid://dde8tqn77wkoq" path="res://characters/enemies/Enemy.tscn" id="11_w1il0"]
 [ext_resource type="PackedScene" uid="uid://ddde6ngyk7ojs" path="res://levels/props/ore.tscn" id="12_eosvf"]
+[ext_resource type="PackedScene" uid="uid://cwj06s58al1ec" path="res://characters/enemies/bat.tscn" id="13_7bbpx"]
 [ext_resource type="AudioStream" uid="uid://3wavyy244vg7" path="res://art/Echoes of the Deep.mp3" id="14_fdtuh"]
 [ext_resource type="PackedScene" uid="uid://djxb2pxheelwa" path="res://levels/props/portal.tscn" id="16_7bbpx"]
 
@@ -80,6 +81,9 @@ tile_set = SubResource("TileSet_8iemx")
 position = Vector2(554.5, 214.00397)
 collision_layer = 4
 collision_mask = 81
+
+[node name="Bat" parent="." groups=["enemy"] instance=ExtResource("13_7bbpx")]
+position = Vector2(535.17633, 561.76733)
 
 [node name="Ore" parent="." instance=ExtResource("12_eosvf")]
 position = Vector2(640.5, 464.3661)
