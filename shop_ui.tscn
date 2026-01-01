@@ -1,19 +1,20 @@
 [gd_scene load_steps=3 format=3 uid="uid://0dho26h372r1"]
 
-[ext_resource type="Script" path="res://scripts/shop_ui.gd" id="1_fscwk"]
+[ext_resource type="Script" uid="uid://ou8y2gpvrm3l" path="res://ui/shop_ui.gd" id="1_fscwk"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_6hffh"]
 
 [node name="ShopUI" type="PanelContainer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -89.5
-offset_top = -60.0
-offset_right = 89.5
-offset_bottom = 60.0
+modulate = Color(0.34733784, 0.41219994, 0.4996506, 1)
+anchors_preset = -1
+anchor_left = 0.42200002
+anchor_top = 0.407
+anchor_right = 0.578
+anchor_bottom = 0.59300005
+offset_left = 0.12197876
+offset_top = 0.26400757
+offset_right = -0.12200928
+offset_bottom = -0.2640381
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fscwk")

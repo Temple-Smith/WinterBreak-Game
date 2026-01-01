@@ -84,7 +84,6 @@ func take_damage(amount: int) -> void:
 	update_hp_bar()
 	flash_red()
 	
-	
 	const dmg_scene = preload("uid://cahrics8oxtdd")
 	var dmg_instance: Node2D = dmg_scene.instantiate()
 	dmg_instance.position = global_position + Vector2(0, -20)

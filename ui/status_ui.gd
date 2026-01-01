@@ -18,4 +18,5 @@ func _process(delta: float) -> void:
 
 func update_hp_bar() -> void:
 	if player:
+		hp_bar.max_value = player.max_health
 		hp_bar.value = player.current_health

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 @export var fire_rate: float = 0.25
+@export var attack_damage: int = 5
 const projectile_scene = preload("uid://bwkspd3vggkhr")
 @export var max_health: int = 10
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -111,14 +112,13 @@ func _on_interaction_area_area_entered(area: Area2D) -> void:
 func attack() -> void:
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var direction: Vector2 = (mouse_pos - global_position).normalized()
-	
 	const SPAWN_DISTANCE: float = 10.0
 	var spawn_pos: Vector2 = global_position + direction * SPAWN_DISTANCE
-	
 	var projectile: Projectile = projectile_scene.instantiate() as Projectile
 	projectile.position = spawn_pos
+	#Pass players current damage
+	projectile.damage = attack_damage
 	projectile.setup(direction, Projectile.Owner.PLAYER)
-	
 	get_parent().add_child(projectile)
 	
 func _on_attack_hit_box_area_entered(area: Area2D) -> void:
@@ -126,5 +126,5 @@ func _on_attack_hit_box_area_entered(area: Area2D) -> void:
 	
 	#Hit enemies
 	if parent is Enemy:
-		parent.take_damage(1)
+		parent.take_damage(attack_damage)
 		return

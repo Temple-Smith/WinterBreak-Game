@@ -49,7 +49,7 @@ func _on_confirm_button_pressed() -> void:
 	var selected_item: BaseItem = shop_guy.items[selected_index]
 	
 	if selected_index == -1: 
-		item_description.text = "No item selected to buy"
+		item_description.text = "Which item do you want to buy?"
 		return
 		
 	if !selected_item:
@@ -58,8 +58,17 @@ func _on_confirm_button_pressed() -> void:
 		
 	var new_money: int = Autoload.get_player_money() - selected_item.price
 	if new_money < 0:
-		item_description.text = "Youre too broke for that item"
+		item_description.text = "You're too BROKE for that item"
 		return
+		
+	# Apply the stat changes if it is a StatChangeItem
+	if selected_item is StatChangeItem:
+		var stat_item: StatChangeItem = selected_item
+		if stat_item.attack_change != 0:
+			player.attack_damage += stat_item.attack_change
+		if stat_item.health_change != 0:
+			player.max_health += stat_item.health_change
+			player.current_health += stat_item.health_change  # heal up if needed
 		
 	item_description.text = "Bought item" + selected_item.item_name
 	shop_guy.items[selected_index] = null
