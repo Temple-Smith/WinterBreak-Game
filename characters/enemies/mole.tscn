@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bq6c4lo2m6hv7"]
+[gd_scene load_steps=17 format=3 uid="uid://bq6c4lo2m6hv7"]
 
 [ext_resource type="Script" uid="uid://chc5xb8ior121" path="res://characters/enemies/enemy.gd" id="1_b4fei"]
+[ext_resource type="PackedScene" uid="uid://r6iklg8khh5w" path="res://characters/enemies/mole_projectile.tscn" id="2_4duye"]
 [ext_resource type="Texture2D" uid="uid://cho3bh7dvfwud" path="res://art/enemies/mole-Sheet.png" id="2_umms7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t8fr5"]
@@ -105,8 +106,9 @@ radius = 140.0
 
 [node name="Mole" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 81
+collision_mask = 337
 script = ExtResource("1_b4fei")
+projectile_scene = ExtResource("2_4duye")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)

@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://r6iklg8khh5w"]
+
+[ext_resource type="Texture2D" uid="uid://dpp7u8q60nsy3" path="res://art/animations/projectiles-Sheet.png" id="1_0rxj3"]
+[ext_resource type="Script" uid="uid://b44ej4nkd3oxj" path="res://items/scenes/projectile.gd" id="1_3kkkr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kkkr"]
+size = Vector2(9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ej32"]
+atlas = ExtResource("1_0rxj3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h0jyy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ej32")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MoleProjectile" type="Area2D"]
+collision_layer = 32
+collision_mask = 322
+script = ExtResource("1_3kkkr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_3kkkr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4.7683716e-07, -4.7683716e-07)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_h0jyy")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

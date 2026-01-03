@@ -1,7 +1,7 @@
 class_name Enemy extends CharacterBody2D
 enum State { IDLE, AGGRO }
 
-const projectile_scene = preload("uid://bwkspd3vggkhr")
+@export var projectile_scene: PackedScene
 @export var fire_rate: float = 2.0
 @export var attack_range: float = 250.0
 @export var speed := 10.0
@@ -60,10 +60,11 @@ func _physics_process(delta: float) -> void:
 
 func fire_at_player(direction: Vector2) -> void:
 	if projectile_scene == null:
+		print("Projectile scene is null for some reason")
 		return
 	var spread_angle: float = 0.3
 	var bullets := 3
-	for i in bullets:
+	for i in range(bullets):
 		# Calculate angle offset for each bullet
 		var t: float = float(i) / float(bullets - 1)  # 0..1
 		var angle_offset: float = lerp(-spread_angle, spread_angle, t)
@@ -72,10 +73,9 @@ func fire_at_player(direction: Vector2) -> void:
 		projectile.position = global_position
 		projectile.lifetime = 2.0
 		projectile.speed = 80
-		projectile.setup(bullet_dir, Projectile.Owner.ENEMY)
+		projectile.setup(bullet_dir)
 		get_parent().add_child(projectile)
  
-
 func take_damage(amount: int) -> void:
 	if is_dead:
 		return

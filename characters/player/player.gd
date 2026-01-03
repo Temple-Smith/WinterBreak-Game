@@ -118,7 +118,7 @@ func attack() -> void:
 	projectile.position = spawn_pos
 	#Pass players current damage
 	projectile.damage = attack_damage
-	projectile.setup(direction, Projectile.Owner.PLAYER)
+	projectile.setup(direction)
 	get_parent().add_child(projectile)
 	
 func _on_attack_hit_box_area_entered(area: Area2D) -> void:
