@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://ce35p0u0gq36l"]
+
+[ext_resource type="Texture2D" uid="uid://dpp7u8q60nsy3" path="res://art/animations/projectiles-Sheet.png" id="1_0pjg0"]
+[ext_resource type="Script" uid="uid://b44ej4nkd3oxj" path="res://items/scenes/projectile.gd" id="1_ru4ma"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ru4ma"]
+atlas = ExtResource("1_0pjg0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nrq15"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ru4ma")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7g76i"]
+size = Vector2(5.1034107, 5.1379633)
+
+[node name="BatProjectile" type="Area2D"]
+collision_layer = 32
+collision_mask = 322
+script = ExtResource("1_ru4ma")
+speed = 50.0
+lifetime = 5.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 2.3561945
+sprite_frames = SubResource("SpriteFrames_nrq15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.62188095, 0.0029787123)
+rotation = -0.76096356
+shape = SubResource("RectangleShape2D_7g76i")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

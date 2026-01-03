@@ -4,6 +4,9 @@ class_name Bat extends Enemy
 @export var amplitude_y: float = 10.0
 @export var frequency: float = 1.0
 
+
+
+
 var t: float = 0.0
 var origin: Vector2 = Vector2.ZERO
 var origin_set: bool = false
@@ -62,23 +65,28 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func fire_at_player(direction: Vector2) -> void:
-	if projectile_scene == null:
-		return
-	var spread_angle: float = 0.3
+	
 	var bullets := 3
-	for i in bullets:
-		# Calculate angle offset for each bullet
-		var t: float = float(i) / float(bullets - 1)  # 0..1
-		var angle_offset: float = lerp(-spread_angle, spread_angle, t)
+	var spread_angle := deg_to_rad(20)
+	
+	for i in range(bullets):
+		var t: float 
+		if bullets == 1:
+			t = 0.0
+		else:
+			t = float(i) / float(bullets - 1)
+		var angle_offset :float = lerp(
+			-spread_angle / 2.0, 
+			spread_angle / 2.0, 
+			t)
+	
 		var bullet_dir: Vector2 = direction.rotated(angle_offset).normalized()
-		var projectile: Projectile = projectile_scene.instantiate()
-		projectile.position = global_position
-		projectile.lifetime = 2.0
-		projectile.speed = 80
-		projectile.setup(bullet_dir, Projectile.Owner.ENEMY)
+			
+		var projectile: Projectile = projectile_scene.instantiate() as Projectile
+		projectile.position = global_position + bullet_dir * 10
+		projectile.setup(bullet_dir)
 		get_parent().add_child(projectile)
  
-
 func take_damage(amount: int) -> void:
 	if is_dead:
 		return
