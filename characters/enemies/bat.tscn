@@ -48,6 +48,7 @@ collision_mask = 81
 script = ExtResource("1_htsr3")
 projectile_scene = ExtResource("2_gef4k")
 speed = 50.0
+max_health = 20
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o61yo")
