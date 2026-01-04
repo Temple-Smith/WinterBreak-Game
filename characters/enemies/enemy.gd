@@ -73,7 +73,7 @@ func fire_at_player(direction: Vector2) -> void:
 		projectile.position = global_position
 		projectile.lifetime = 2.0
 		projectile.speed = 80
-		projectile.setup(bullet_dir)
+		projectile.setup(bullet_dir, Projectile.Owner.ENEMY)
 		get_parent().add_child(projectile)
  
 func take_damage(amount: int) -> void:

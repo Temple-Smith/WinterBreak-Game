@@ -84,7 +84,7 @@ func fire_at_player(direction: Vector2) -> void:
 			
 		var projectile: Projectile = projectile_scene.instantiate() as Projectile
 		projectile.position = global_position + bullet_dir * 10
-		projectile.setup(bullet_dir)
+		projectile.setup(bullet_dir, Projectile.Owner.ENEMY)
 		get_parent().add_child(projectile)
  
 func take_damage(amount: int) -> void:

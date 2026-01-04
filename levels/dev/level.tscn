@@ -82,21 +82,27 @@ tile_set = SubResource("TileSet_8iemx")
 position = Vector2(535.17633, 561.76733)
 collision_mask = 337
 
-[node name="Ore" parent="." instance=ExtResource("12_eosvf")]
-position = Vector2(640.5, 464.3661)
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_fdtuh")
 autoplay = true
-
-[node name="Ore2" parent="." instance=ExtResource("12_eosvf")]
-position = Vector2(597.5, 465.3661)
-
-[node name="Ore3" parent="." instance=ExtResource("12_eosvf")]
-position = Vector2(555.5, 463.3661)
 
 [node name="Portal" parent="." instance=ExtResource("16_7bbpx")]
 position = Vector2(254.23293, 249.76157)
 
 [node name="Mole" parent="." instance=ExtResource("16_a2wt0")]
 position = Vector2(593, 384)
+
+[node name="Ore" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(535, 455)
+
+[node name="Ore2" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(566, 458)
+
+[node name="Ore3" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(597, 459)
+
+[node name="Ore4" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(625, 460)
+
+[node name="Ore5" parent="." instance=ExtResource("12_eosvf")]
+position = Vector2(655, 456)
