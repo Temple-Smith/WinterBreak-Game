@@ -6,10 +6,12 @@ enum State { IDLE, AGGRO }
 @export var attack_range: float = 250.0
 @export var speed := 10.0
 @export var max_health := 30
+@export var knockback_decay: float = 200.0
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hp_fill: ColorRect = $HPBar/Fill
 
+var knockback_velocity: Vector2 = Vector2.ZERO
 var state: State = State.IDLE
 var current_hp: int = max_health
 var full_hp_width: float
@@ -42,21 +44,29 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
 	
-	match state:
-		State.IDLE:
-			velocity = Vector2.ZERO
-			sprite.play("idle_Right")
-		
-		State.AGGRO:
-			if player:
-				var direction: Vector2 = (player.global_position - global_position).normalized()
-				velocity = direction * speed
-				fire_timer -= delta
-				if fire_timer <= 0.0:
-					fire_at_player(direction)
-					fire_timer = fire_rate
-				update_animation(direction)	
+	if knockback_velocity.length() > 0:
+		velocity = knockback_velocity
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
+	else:
+	
+		match state:
+			State.IDLE:
+				velocity = Vector2.ZERO
+				sprite.play("idle_Right")
+			
+			State.AGGRO:
+				if player:
+					var direction: Vector2 = (player.global_position - global_position).normalized()
+					velocity = direction * speed
+					fire_timer -= delta
+					if fire_timer <= 0.0:
+						fire_at_player(direction)
+						fire_timer = fire_rate
+					update_animation(direction)	
 	move_and_slide()
+
+func apply_knockback(direction: Vector2, force: float) -> void:
+	knockback_velocity = direction.normalized() * force
 
 func fire_at_player(direction: Vector2) -> void:
 	if projectile_scene == null:

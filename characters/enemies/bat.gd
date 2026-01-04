@@ -4,9 +4,6 @@ class_name Bat extends Enemy
 @export var amplitude_y: float = 10.0
 @export var frequency: float = 1.0
 
-
-
-
 var t: float = 0.0
 var origin: Vector2 = Vector2.ZERO
 var origin_set: bool = false
@@ -29,39 +26,55 @@ func update_animation(direction: Vector2) -> void:
 	else:
 		sprite.play("default")
 		return
+
+func idle_flight(delta: float) -> void:
+	t += delta * frequency
+
+# store origin once
+	if not origin_set:
+		origin = global_position
+		origin_set = true
+
+	# parametric figure-8 movement
+	var target_pos: Vector2 = origin + Vector2(
+		amplitude_x * sin(t),
+		amplitude_y * sin(t) * cos(t)
+	)
+
+	# compute velocity to reach target_pos
+	velocity = (target_pos - global_position) / delta
+	#move_and_slide()
 		
-func _physics_process(delta: float) -> void:
-	if is_dead:
-		return
-	
-	match state:
-		State.IDLE:
-			t += delta * frequency
-
-			# store origin once
-			if not origin_set:
-				origin = global_position
-				origin_set = true
-
-			# parametric figure-8 movement
-			var target_pos: Vector2 = origin + Vector2(
-				amplitude_x * sin(t),
-				amplitude_y * sin(t) * cos(t)
-			)
-
-			# compute velocity to reach target_pos
-			velocity = (target_pos - global_position) / delta
-			move_and_slide()
-		
-		State.AGGRO:
-			if player:
+func apply_aggro(delta: float) -> void:
+	if player:
 				var direction: Vector2 = (player.global_position - global_position).normalized()
 				velocity = direction * speed
 				fire_timer -= delta
 				if fire_timer <= 0.0:
 					fire_at_player(direction)
 					fire_timer = fire_rate
-				update_animation(direction)	
+				update_animation(direction)
+
+func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
+ 		
+	if knockback_velocity.length() > 0:
+		velocity = knockback_velocity
+		knockback_velocity = knockback_velocity.move_toward(
+			Vector2.ZERO,
+			knockback_decay * delta
+		)
+		if knockback_velocity.length() < 5.0:
+			origin = global_position
+			t = 0.0
+	else:
+		match state:
+			State.IDLE:
+				idle_flight(delta)
+			
+			State.AGGRO:
+				apply_aggro(delta)	
 	move_and_slide()
 
 func fire_at_player(direction: Vector2) -> void:
