@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://qsb0jou1b0jy"]
+
+[ext_resource type="Script" uid="uid://b44udmbjfcipo" path="res://items/scenes/explosion.gd" id="1_t0ev1"]
+[ext_resource type="Texture2D" uid="uid://dcql2d7xr80xr" path="res://art/animations/explosion-Sheet.png" id="1_ucloc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t0ev1"]
+radius = 27.166155
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfssp"]
+atlas = ExtResource("1_ucloc")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1qew"]
+atlas = ExtResource("1_ucloc")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b74tk"]
+atlas = ExtResource("1_ucloc")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eanud"]
+atlas = ExtResource("1_ucloc")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh42j"]
+atlas = ExtResource("1_ucloc")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0o5xj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfssp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1qew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b74tk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eanud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xh42j")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 5.0
+}]
+
+[node name="Explosion" type="Area2D"]
+collision_layer = 32
+collision_mask = 260
+script = ExtResource("1_t0ev1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t0ev1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.5, -1.5)
+scale = Vector2(0.921875, 0.953125)
+sprite_frames = SubResource("SpriteFrames_0o5xj")
+animation = &"explode"
+autoplay = "explode"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

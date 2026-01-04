@@ -7,6 +7,8 @@ enum Owner { PLAYER, ENEMY }
 
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+var dynamite_speed: float = 80
+var dynamite_lifetime: float = 2.0
 var damage: int = 1
 var velocity: Vector2 = Vector2.ZERO
 var elapsed: float = 0.0

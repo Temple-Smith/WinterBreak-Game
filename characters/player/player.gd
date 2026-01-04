@@ -5,8 +5,13 @@ const SPEED = 100.0
 @export var attack_damage: int = 5
 const projectile_scene = preload("uid://bwkspd3vggkhr")
 @export var max_health: int = 10
+@export var dynamite_scene: PackedScene = preload("uid://c1vhf8cywagh7")
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var interaction_area: Area2D = $InteractionArea
+enum WeaponType {BULLET, DYNAMITE}
+
+@export var equipped_weapon: WeaponType = WeaponType.BULLET
+
 
 var fire_timer: float = 0.0
 var is_firing: bool = false
@@ -108,18 +113,55 @@ func _on_interaction_area_area_entered(area: Area2D) -> void:
 		var amount: int = area.get_meta("amount")
 		Autoload.player_money += amount
 		area.queue_free()
+		
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("swap_weapon"):
+		if equipped_weapon == WeaponType.BULLET:
+			equipped_weapon = WeaponType.DYNAMITE
+		else:
+			equipped_weapon = WeaponType.BULLET
+		
+		print("Equipped weapon:", equipped_weapon)
+
 
 func attack() -> void:
+	
+	match equipped_weapon:
+		WeaponType.BULLET:
+			fire_bullet()
+		WeaponType.DYNAMITE:
+			throw_dynamite()
+	
+	#var mouse_pos: Vector2 = get_global_mouse_position()
+	#var direction: Vector2 = (mouse_pos - global_position).normalized()
+	#const SPAWN_DISTANCE: float = 10.0
+	#var spawn_pos: Vector2 = global_position + direction * SPAWN_DISTANCE
+	#var projectile: Projectile = projectile_scene.instantiate() as Projectile
+	#projectile.position = spawn_pos
+	#projectile.damage = attack_damage
+	#projectile.setup(direction, Projectile.Owner.PLAYER)
+	#get_parent().add_child(projectile)
+func fire_bullet() -> void:
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var direction: Vector2 = (mouse_pos - global_position).normalized()
 	const SPAWN_DISTANCE: float = 10.0
 	var spawn_pos: Vector2 = global_position + direction * SPAWN_DISTANCE
 	var projectile: Projectile = projectile_scene.instantiate() as Projectile
 	projectile.position = spawn_pos
-	#Pass players current damage
 	projectile.damage = attack_damage
 	projectile.setup(direction, Projectile.Owner.PLAYER)
 	get_parent().add_child(projectile)
+
+func throw_dynamite() -> void:
+	var mouse_pos := get_global_mouse_position()
+	var direction := (mouse_pos - global_position).normalized()
+
+	var dynamite: Dynamite = dynamite_scene.instantiate()
+	dynamite.global_position = global_position
+	dynamite.setup(direction)
+
+	get_parent().add_child(dynamite)
+
 	
 func _on_attack_hit_box_area_entered(area: Area2D) -> void:
 	var parent := area.get_parent()
