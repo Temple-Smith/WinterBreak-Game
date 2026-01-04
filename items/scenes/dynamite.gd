@@ -5,8 +5,8 @@ class_name Dynamite
 @export var speed: float = 80
 @export var lifetime: float = 0.85
 @export var explosion_radius: float = 64
-@export var damage: int = 5
-@export var knockback_force: float = 200.0
+@export var damage: int = 10
+@export var knockback_force: float = 120.0
 
 var velocity: Vector2
 var elapsed: float = 0.0
