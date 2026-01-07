@@ -87,7 +87,7 @@ stream = ExtResource("14_fdtuh")
 autoplay = true
 
 [node name="Portal" parent="." instance=ExtResource("16_7bbpx")]
-position = Vector2(254.23293, 249.76157)
+position = Vector2(656, 176)
 
 [node name="Ore" parent="." instance=ExtResource("12_eosvf")]
 position = Vector2(535, 455)
@@ -120,4 +120,7 @@ position = Vector2(526, 565)
 position = Vector2(650, 392)
 
 [node name="Boss" parent="." instance=ExtResource("18_dhay2")]
-position = Vector2(254, 189)
+position = Vector2(257, 261)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.20736489, 0.3207034, 0.4237765, 0.93333334)
