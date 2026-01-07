@@ -1,7 +1,8 @@
-[gd_scene load_steps=33 format=3 uid="uid://qhltgybk1u3s"]
+[gd_scene load_steps=34 format=3 uid="uid://qhltgybk1u3s"]
 
 [ext_resource type="Script" uid="uid://hjyqxvwyh57q" path="res://characters/player/player.gd" id="1_xxgcw"]
 [ext_resource type="Texture2D" uid="uid://b256emvf1f6ad" path="res://art/animations/miner-Sheet.png" id="2_exd8k"]
+[ext_resource type="Texture2D" uid="uid://xe5kp3ro8ch1" path="res://art/animations/light.png" id="3_exd8k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
 radius = 5.0
@@ -248,5 +249,11 @@ collision_mask = 36
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CapsuleShape2D_dovo2")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+rotation = -0.005395116
+energy = 0.75
+texture = ExtResource("3_exd8k")
+texture_scale = 0.6
 
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]

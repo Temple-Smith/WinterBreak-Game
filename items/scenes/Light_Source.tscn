@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqar1313ks2v"]
+
+[ext_resource type="Texture2D" uid="uid://dun4bd5wvrit4" path="res://art/animations/light_Source-Sheet.png" id="1_nwglc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dnsh"]
+atlas = ExtResource("1_nwglc")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nyljo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dnsh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="LightSource" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nyljo")
+autoplay = "default"

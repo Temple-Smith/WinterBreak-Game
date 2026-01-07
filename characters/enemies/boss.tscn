@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://be6imjpt82mec"]
+[gd_scene load_steps=9 format=3 uid="uid://be6imjpt82mec"]
 
+[ext_resource type="Script" uid="uid://bhkexh5hcwa6i" path="res://characters/enemies/boss.gd" id="1_1bu7j"]
 [ext_resource type="Texture2D" uid="uid://qn1c7bny7q0m" path="res://art/animations/boss-Sheet.png" id="1_ngro2"]
+[ext_resource type="PackedScene" uid="uid://r6iklg8khh5w" path="res://characters/enemies/mole_projectile.tscn" id="2_pwr6c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bu7j"]
 atlas = ExtResource("1_ngro2")
@@ -18,11 +20,61 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pu1l4"]
+radius = 23.086792
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pwr6c"]
+radius = 62.03225
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pwr6c"]
+radius = 9.0
+height = 22.0
 
 [node name="Boss" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 272
+script = ExtResource("1_1bu7j")
+bullet_scene = ExtResource("2_pwr6c")
+lunge_speed = 100
+max_health = 300
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pwr6c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pu1l4")
+
+[node name="BulletSpawn" type="Marker2D" parent="."]
+
+[node name="AggroRange" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange"]
+shape = SubResource("CircleShape2D_pwr6c")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 81
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_pwr6c")
+
+[node name="HPBar" type="Node2D" parent="."]
+position = Vector2(-3.7579575, -26.153608)
+
+[node name="Background" type="ColorRect" parent="HPBar"]
+offset_left = -4.0
+offset_top = -7.0
+offset_right = 5.0
+offset_bottom = -6.0
+
+[node name="Fill" type="ColorRect" parent="HPBar"]
+offset_left = -4.0
+offset_top = -7.0
+offset_right = 5.0
+offset_bottom = -6.0
+color = Color(0.70980394, 0.14117648, 0.27058825, 1)
+
+[connection signal="body_entered" from="AggroRange" to="." method="_on_aggro_range_body_entered"]
+[connection signal="body_exited" from="AggroRange" to="." method="_on_aggro_range_body_exited"]
