@@ -1,10 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://be6imjpt82mec"]
+[gd_scene load_steps=13 format=3 uid="uid://be6imjpt82mec"]
 
 [ext_resource type="Script" uid="uid://bhkexh5hcwa6i" path="res://characters/enemies/boss.gd" id="1_1bu7j"]
 [ext_resource type="Texture2D" uid="uid://qn1c7bny7q0m" path="res://art/animations/boss-Sheet.png" id="1_ngro2"]
 [ext_resource type="PackedScene" uid="uid://r6iklg8khh5w" path="res://characters/enemies/mole_projectile.tscn" id="2_pwr6c"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1bu7j"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwr6c"]
+atlas = ExtResource("1_ngro2")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu1l4"]
+atlas = ExtResource("1_ngro2")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjiek"]
+atlas = ExtResource("1_ngro2")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seyra"]
+atlas = ExtResource("1_ngro2")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rpdr"]
 atlas = ExtResource("1_ngro2")
 region = Rect2(0, 0, 64, 64)
 
@@ -12,7 +28,19 @@ region = Rect2(0, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1bu7j")
+"texture": SubResource("AtlasTexture_pwr6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu1l4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjiek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seyra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rpdr")
 }],
 "loop": true,
 "name": &"default",
@@ -23,7 +51,7 @@ animations = [{
 radius = 23.086792
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pwr6c"]
-radius = 62.03225
+radius = 94.08507
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pwr6c"]
 radius = 9.0
@@ -39,6 +67,7 @@ max_health = 300
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pwr6c")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pu1l4")

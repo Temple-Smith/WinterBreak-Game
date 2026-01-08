@@ -156,7 +156,6 @@ func _process(delta: float) -> void:
 
 
 func _on_aggro_range_body_entered(body: Node2D) -> void:
-	print("ENTER:", body)
 	if body.is_in_group("player") and not is_aggroed:
 		is_aggroed = true
 		player = body
