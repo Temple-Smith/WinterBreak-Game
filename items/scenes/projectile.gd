@@ -43,6 +43,7 @@ func _finish_setup(direction: Vector2) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	var target := area.get_parent()
+	
 	# PLAYER hits Enemy
 	if projectile_owner == Owner.PLAYER and target is Enemy:
 		target.take_damage(damage)
