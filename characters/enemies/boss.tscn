@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bhkexh5hcwa6i" path="res://characters/enemies/boss.gd" id="1_1bu7j"]
 [ext_resource type="Texture2D" uid="uid://qn1c7bny7q0m" path="res://art/animations/boss-Sheet.png" id="1_ngro2"]
-[ext_resource type="PackedScene" uid="uid://r6iklg8khh5w" path="res://characters/enemies/mole_projectile.tscn" id="2_pwr6c"]
+[ext_resource type="PackedScene" uid="uid://d1ib22whadr05" path="res://characters/enemies/slimeKing_projectile.tscn" id="2_pwr6c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pwr6c"]
 atlas = ExtResource("1_ngro2")
