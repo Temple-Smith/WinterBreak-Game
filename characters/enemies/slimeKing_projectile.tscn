@@ -6,15 +6,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3kkkr"]
 size = Vector2(4, 4)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gblsp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2h74"]
 atlas = ExtResource("2_h2h74")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_h0jyy"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_gblsp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gblsp")
+"texture": SubResource("AtlasTexture_h2h74")
 }],
 "loop": true,
 "name": &"default",
@@ -32,7 +32,7 @@ shape = SubResource("RectangleShape2D_3kkkr")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(5.9604645e-08, 1.1920929e-07)
 scale = Vector2(0.515625, 0.51562506)
-sprite_frames = SubResource("SpriteFrames_h0jyy")
+sprite_frames = SubResource("SpriteFrames_gblsp")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
