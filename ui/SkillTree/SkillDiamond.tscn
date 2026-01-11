@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://sfpa13xlki1l"]
+
+[sub_resource type="Gradient" id="Gradient_7fafv"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s4w54"]
+gradient = SubResource("Gradient_7fafv")
+
+[sub_resource type="Gradient" id="Gradient_gkwcx"]
+offsets = PackedFloat32Array(0, 0.16666667, 0.29333332, 0.58666664, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.9717217, 0.90749717, 0.93205124, 1, 0.6194082, 0.6996758, 0.92804235, 1, 0.22205201, 0.2508272, 0.33269447, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ds1po"]
+gradient = SubResource("Gradient_gkwcx")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(1, 0.11682243)
+
+[node name="SkillDiamond" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = SubResource("GradientTexture2D_s4w54")
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0/5"
+
+[node name="TextureRect" type="TextureRect" parent="TextureButton"]
+modulate = Color(0.44313726, 1, 1, 1)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("GradientTexture2D_ds1po")
+stretch_mode = 3
