@@ -1,0 +1,29 @@
+{
+  "tree_id": "general",
+  "nodes": [
+	{
+	  "id": "gen_damage",
+	  "name": "Heavy Hands",
+	  "desc": "+1 damage per rank.",
+	  "max_rank": 5,
+	  "pos": [120, 40],
+	  "requires": []
+	},
+	{
+	  "id": "gen_hp",
+	  "name": "Tough Skin",
+	  "desc": "+2 max HP per rank.",
+	  "max_rank": 5,
+	  "pos": [40, 120],
+	  "requires": []
+	},
+	{
+	  "id": "gen_firerate",
+	  "name": "Quick Trigger",
+	  "desc": "Fire rate 5% faster per rank.",
+	  "max_rank": 5,
+	  "pos": [200, 120],
+	  "requires": [{ "id": "gen_damage", "rank": 1 }]
+	}
+  ]
+}
