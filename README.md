@@ -1,45 +1,36 @@
-**Project Overview**
+## Project Overview
 
-This project is a small 2D game developed over a three-week winter break by a team of classmates and myself. The game blends mining mechanics with bullet-hell combat, challenging players to collect resources while surviving increasingly chaotic enemy encounters.
+This project is a small 2D game developed over a three-week winter break by a team of classmates and myself. The game combines mining mechanics with bullet-hell combat, challenging players to gather resources while surviving increasingly chaotic enemy encounters.
 
-Players mine ore veins that drop currency used to purchase upgrades from an in-game shop. While the original design included crafting and resource refinement, the scope was intentionally reduced to ensure a complete and playable experience within the time constraint.
+Players mine ore veins that drop currency, which can be spent on upgrades through an in-game shop. While the original concept included crafting and resource refinement systems, the scope was intentionally reduced to ensure the project reached a complete and playable state within the limited timeframe.
+
 <div align="center">
-  <img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/f8c12a94-81d4-4113-9bc5-15ef7260a7cb" style="display:inline-block; margin-right:10px;" />
-  <img width="570" height="1000" alt="image" src="https://github.com/user-attachments/assets/0bfe43e7-b111-47be-bbdd-507d3921d43c" style="display:inline-block;" />
+  <img width="400" height="400" alt="Gameplay screenshot 1" src="https://github.com/user-attachments/assets/f8c12a94-81d4-4113-9bc5-15ef7260a7cb" style="display:inline-block; margin-right:10px;" />
+  <img width="570" height="1000" alt="Gameplay screenshot 2" src="https://github.com/user-attachments/assets/0bfe43e7-b111-47be-bbdd-507d3921d43c" style="display:inline-block;" />
 </div>
 
-<div>&nbsp</div>
+<br />
 
-**Technical Highlights**
+## Technical Highlights
 
--Built using Godot Engine
+- Built using the Godot Engine  
+- Implemented early procedural level generation using Perlin noise  
+- Designed and animated custom sprite assets  
+- Developed projectile systems, enemy behaviors, and collision handling using Godot’s collision layers  
+- Worked in a collaborative Git environment, resolving merge conflicts and coordinating feature development  
 
--Implemented procedural level generation using Perlin Noise (early prototype)
+## Key Learnings
 
--Designed custom animation and sprite assets
+- Gained hands-on experience using version control in a team setting, including resolving merge conflicts  
+- Developed a stronger understanding of scope management and feature prioritization  
+- Improved understanding of real-time collision systems and projectile behavior  
+- Experienced the time and effort required for asset creation and animation  
 
--Implemented projectile systems, enemy behaviors, and collision handling using Godot’s collision layers
+## Future Improvements
 
--Worked in a team Git environment, resolving merge conflicts and coordinating feature development
+If development were to continue, potential improvements include:
 
-**Key Learnings**
-
--Gained hands-on experience with version control in a collaborative setting, including resolving merge conflicts
-  
--Learned practical constraints of game scope management
-
--Improved understanding of real-time collision systems and projectile behavior
-
--Experienced the time cost of asset creation and animation firsthand
-
-**Future Improvements**
-
-If continued, I would:
-
--Expand enemy variety and attack patterns
-
--Improve visual polish and animation consistency
-
--Revisit procedural generation to increase level variety
-
--Add more meaningful progression systems (crafting, upgrades, scaling difficulty)
+- Expanding enemy variety and attack patterns  
+- Improving visual polish and animation consistency  
+- Revisiting procedural generation to increase level variety  
+- Adding deeper progression systems such as crafting, expanded upgrades, and difficulty scaling  
